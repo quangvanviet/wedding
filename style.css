@@ -270,3 +270,20 @@ footer {
   user-select: none;
 }
 
+#heart {
+  width: 100px;
+  height: 100px;
+  background: red;
+  clip-path: path("M50 90 L10 40 A20 20 0 0 1 50 20 A20 20 0 0 1 90 40 Z");
+  transition: transform 0.2s, filter 0.2s;
+}
+
+#heart.bright {
+  filter: brightness(2);
+  transform: scale(1.2);
+}
+
+#heart.pop {
+  transform: scale(1.5);
+}
+
