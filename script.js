@@ -146,8 +146,6 @@ function createFlyingHeart() {
   setTimeout(() => heart.remove(), duration);
 }
 
-
-
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
 const bgMusic = document.getElementById('bgMusic');
 document.body.addEventListener('click', () => {
