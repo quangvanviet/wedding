@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiệp cưới Nam ❤️ Hoa</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <audio id="bgMusic" autoplay loop>
+    <source src="music/love-song.mp3" type="audio/mpeg" />
+  </audio>
+
+  <canvas id="flowerCanvas"></canvas>
+
+  <div class="invitation">
+    <h1>💍 Thiệp cưới Nam & Hoa 💐</h1>
+    <img src="images/couple.jpg" alt="Nam và Hoa" class="couple-photo" />
+
+    <p class="intro">
+      Trân trọng kính mời bạn đến dự lễ thành hôn của chúng tôi!
+    </p>
+
+    <div class="details">
+      <p><strong>📅 Ngày:</strong> 25 tháng 12 năm 2025</p>
+      <p><strong>📍 Địa điểm:</strong> Nhà hàng Golden Palace, Hà Nội</p>
+      <a href="https://maps.google.com/?q=Golden+Palace+Hà+Nội" target="_blank" class="btn">📍 Xem bản đồ</a>
+    </div>
+
+    <div class="qr-section">
+      <h3>🎁 Mừng cưới trực tuyến</h3>
+      <img src="images/qr-momo.png" alt="QR mừng cưới" class="qr-image" />
+      <p><small>Quét mã QR để gửi lời chúc và mừng cưới đến Nam & Hoa ❤️</small></p>
+    </div>
+
+    <div class="message-form">
+      <h3>💌 Gửi lời chúc đến cô dâu & chú rể</h3>
+      <form id="wishForm">
+        <input type="text" id="name" placeholder="Tên của bạn" required />
+        <textarea id="message" placeholder="Lời chúc của bạn..." required></textarea>
+        <button type="submit">Gửi lời chúc</button>
+      </form>
+      <div id="wishList"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made with ❤️ by Nam & Hoa | 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
