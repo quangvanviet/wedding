@@ -105,7 +105,7 @@ footer {
 /* === SLIDESHOW === */
 .slideshow-container {
   position: relative;
-  max-width: 600px;
+  height: 380px;
   margin: auto;
   border-radius: 15px;
   overflow: hidden;
@@ -118,7 +118,11 @@ footer {
 
 .slide img {
   width: 100%;
-  border-radius: 15px;
+  height: 100%;
+  object-fit: cover;      /* đảm bảo ảnh luôn lấp đầy khung */
+  object-position: center;/* căn giữa ảnh */
+  display: block;
+  transition: transform 0.8s ease-in-out;
 }
 
 /* Nút chuyển ảnh */
