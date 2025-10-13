@@ -162,6 +162,107 @@ function createFlyingHeart() {
   setTimeout(() => heart.remove(), duration);
 }
 
+// ====== NÚT XEM LỜI CHÚC ======
+  document.getElementById("viewWishesBtn").addEventListener("click", async () => {
+    const overlay = document.createElement("div");
+    overlay.className = "wishes-overlay";
+    overlay.innerHTML = `
+      <div class="wishes-popup">
+        <h2>💌 Lời chúc gửi đến cô dâu & chú rể 💕</h2>
+        <div id="wishesList" class="wishes-list">Đang tải...</div>
+        <button id="closeWishesBtn" class="close-wishes-btn">Đóng</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    // Đóng popup
+    document.getElementById("closeWishesBtn").onclick = () => overlay.remove();
+
+    // Load dữ liệu từ Firebase
+    const wishesRef = ref(db, "wishes");
+    onValue(wishesRef, (snapshot) => {
+      const wishesList = document.getElementById("wishesList");
+      wishesList.innerHTML = ""; // Xóa cũ
+      const data = snapshot.val();
+      if (!data) {
+        wishesList.innerHTML = "<p>Chưa có lời chúc nào cả 💌</p>";
+        return;
+      }
+
+      // Duyệt qua danh sách lời chúc
+      const entries = Object.values(data).reverse(); // Mới nhất lên trên
+      for (const wish of entries) {
+        const p = document.createElement("div");
+        const date = new Date(wish.time).toLocaleString("vi-VN");
+        p.className = "wish-item";
+        p.innerHTML = `
+          <p><strong>${wish.name}</strong> 💬 <em>${wish.message}</em></p>
+          <span>${date}</span>
+        `;
+        wishesList.appendChild(p);
+      }
+    });
+  });
+
+  // ====== CSS CHO POPUP ======
+  const style = document.createElement("style");
+  style.textContent = `
+    .wishes-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      animation: fadeIn 0.3s ease;
+    }
+    .wishes-popup {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .wishes-list {
+      text-align: left;
+      margin-top: 15px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+    .wish-item {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+    .wish-item span {
+      font-size: 12px;
+      color: gray;
+    }
+    .close-wishes-btn {
+      background: #ff6fa1;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .close-wishes-btn:hover {
+      background: #ff4f80;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
 const bgMusic = document.getElementById('bgMusic');
 document.body.addEventListener('click', () => {
