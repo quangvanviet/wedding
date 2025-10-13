@@ -260,4 +260,13 @@ footer {
   justify-content: center;
 }
 
+.flying-heart {
+  position: fixed;
+  color: #ff4d6d;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0.9;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+  user-select: none;
+}
 
