@@ -58,35 +58,51 @@ window.addEventListener("resize", () => {
   canvas.height = window.innerHeight;
 });
 
-
 // 💌 Lời chúc
-const scriptURL = 'https://script.google.com/macros/s/AKfycbx_isApp_GkwLDY8E2u2SWFVc6MobFCivqR0cEpSKK6wMwvFE0NH7ATWttl7ER9HQ0/exec';
+// Import Firebase
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
 
-document.getElementById('wishForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const message = document.getElementById('message').value.trim();
+  // === CONFIG CỦA BẠN ===
+  const firebaseConfig = {
+    apiKey: "AIzaSyDWY3sQ_Gz4UeKGqFHKp10d83h3SRNoZv0",
+    authDomain: "wedding-card-be153.firebaseapp.com",
+    databaseURL: "https://wedding-card-be153-default-rtdb.firebaseio.com",
+    projectId: "wedding-card-be153",
+    storageBucket: "wedding-card-be153.firebasestorage.app",
+    messagingSenderId: "396090536315",
+    appId: "1:396090536315:web:9ad4ce0da0bfe2c86f0dde",
+    measurementId: "G-TLF5PVGE8N"
+  };
 
-  if (!name || !message) {
-    showPopup("💌 Vui lòng nhập tên và lời chúc!");
-    return;
-  }
+  // === KẾT NỐI FIREBASE ===
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
 
-  try {
-    const resp = await fetch(scriptURL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, message })
-    });
-    // bạn có thể kiểm tra resp JSON nếu muốn
+  // === GỬI LỜI CHÚC ===
+  document.getElementById("wishForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-    showPopup("Cảm ơn bạn đã gửi lời chúc!");
-    this.reset();
-  } catch (err) {
-    console.error("Lỗi gửi lời chúc:", err);
-    showPopup("Gửi lời chúc thất bại. Vui lòng thử lại!");
-  }
-});
+    if (!name || !message) {
+      showPopup("💌 Vui lòng nhập tên và lời chúc!");
+      return;
+    }
+
+    try {
+      await push(ref(db, "wishes"), {
+        name,
+        message,
+        time: new Date().toISOString()
+      });
+      showPopup("Cảm ơn bạn đã gửi lời chúc!");
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
+      showPopup("Gửi lời chúc thất bại. Vui lòng thử lại!");
+    }
+  });
 
 function showPopup(message) {
   // Tạo popup nếu chưa có
