@@ -69,10 +69,10 @@ document.getElementById('wishForm').addEventListener('submit', async function(e)
   const message = document.getElementById('message').value.trim();
   
   if (!name || !message) {
-    alert("Vui lòng nhập đầy đủ tên và lời chúc 💌");
+    showPopup("💌 Vui lòng nhập đầy đủ tên và lời chúc nhé!");
     return;
   }
-  
+
   try {
     await fetch(scriptURL, {
       method: 'POST',
@@ -80,14 +80,36 @@ document.getElementById('wishForm').addEventListener('submit', async function(e)
       body: JSON.stringify({ name, message })
     });
 
-    // Hiển thị popup cảm ơn
-    alert("Cảm ơn bạn đã gửi lời chúc 💖 Chúc bạn một ngày thật vui!");
+    showPopup("💖 Cảm ơn bạn đã gửi lời chúc! 💖");
     this.reset();
   } catch (err) {
-    alert("Có lỗi xảy ra khi gửi lời chúc 😢 Vui lòng thử lại sau.");
     console.error(err);
+    showPopup("😢 Có lỗi xảy ra khi gửi lời chúc, vui lòng thử lại!");
   }
 });
+
+
+function showPopup(message) {
+  // Tạo popup nếu chưa có
+  let popup = document.getElementById('popupMessage');
+  if (!popup) {
+    popup = document.createElement('div');
+    popup.id = 'popupMessage';
+    document.body.appendChild(popup);
+  }
+
+  // Gán nội dung và hiển thị
+  popup.innerText = message;
+  popup.style.display = 'flex';
+  popup.style.opacity = '1';
+
+  // Ẩn dần sau 3 giây
+  setTimeout(() => {
+    popup.style.opacity = '0';
+    setTimeout(() => popup.style.display = 'none', 500);
+  }, 3000);
+}
+
 
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
 const bgMusic = document.getElementById('bgMusic');
