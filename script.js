@@ -58,44 +58,57 @@ document.body.addEventListener('click', () => {
 }, { once: true });
 
 // === SLIDESHOW ẢNH CƯỚI ===
-let slideIndex = 0;
-let slideTimer; // giữ timer hiện tại
+let slideIndex = 1;
+let slideTimer;
 
+// Hiển thị ảnh hiện tại
 function showSlides() {
   let slides = document.getElementsByClassName("slide");
   let dots = document.getElementsByClassName("dot");
-  
+  if (slides.length === 0) return;
+
+  // vòng lại nếu vượt biên
+  if (slideIndex > slides.length) slideIndex = 1;
+  if (slideIndex < 1) slideIndex = slides.length;
+
+  // ẩn tất cả ảnh
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
-  
-  slideIndex++;
-  if (slideIndex > slides.length) { slideIndex = 1 }
-  
+  // bỏ active khỏi dots
   for (let i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  
+
+  // hiển thị ảnh hiện tại
   slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-  
-  clearTimeout(slideTimer); // xóa timer cũ
-  slideTimer = setTimeout(showSlides, 4000); // đổi ảnh mỗi 4 giây
+  if (dots[slideIndex - 1]) dots[slideIndex - 1].className += " active";
+
+  // reset timer tự động chạy
+  clearTimeout(slideTimer);
+  slideTimer = setTimeout(() => {
+    slideIndex++;
+    showSlides();
+  }, 4000);
 }
 
 // Nút điều hướng
 function plusSlides(n) {
-  const slides = document.getElementsByClassName("slide");
-  const slideLength = slides.length; // tự lấy số ảnh
+  slideIndex += n;          // chỉ thay đổi chỉ số
+  clearTimeout(slideTimer); // ngừng timer cũ
+  showSlides();             // hiển thị lại đúng ảnh
+}
 
-  slideIndex += n;
-
-  if (slideIndex > slideLength) slideIndex = 1;
-  if (slideIndex < 1) slideIndex = slideLength;
-
+// Khi click vào chấm
+function currentSlide(n) {
+  slideIndex = n;
   clearTimeout(slideTimer);
   showSlides();
 }
+
+// Bắt đầu
+showSlides();
+
 
 // Khi click vào chấm
 function currentSlide(n) {
