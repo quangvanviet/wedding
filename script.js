@@ -86,15 +86,16 @@ function showSlides() {
 // Nút điều hướng
 function plusSlides(n) {
   const slides = document.getElementsByClassName("slide");
+  const slideLength = slides.length; // tự lấy số ảnh
+
   slideIndex += n;
 
-  if (slideIndex > slides.length) slideIndex = 1;
-  if (slideIndex < 1) slideIndex = slides.length;
+  if (slideIndex > slideLength) slideIndex = 1;
+  if (slideIndex < 1) slideIndex = slideLength;
 
   clearTimeout(slideTimer);
   showSlides();
 }
-
 
 // Khi click vào chấm
 function currentSlide(n) {
