@@ -148,7 +148,7 @@ function createFlyingHeart() {
     overlay.className = "wishes-overlay";
     overlay.innerHTML = `
       <div class="wishes-popup">
-        <h2>💌 Lời chúc gửi đến cô dâu & chú rể 💕</h2>
+        <h2>💌 Lời chúc 💌</h2>
         <div id="wishesList" class="wishes-list">Đang tải...</div>
         <button id="closeWishesBtn" class="close-wishes-btn">Đóng</button>
       </div>
@@ -166,7 +166,7 @@ function createFlyingHeart() {
       const data = snapshot.val();
     
       if (!data) {
-        wishesList.innerHTML = "<p>Chưa có lời chúc nào cả 💌</p>";
+        wishesList.innerHTML = "<p>Chưa có lời chúc nào cả</p>";
         return;
       }
     
@@ -176,7 +176,8 @@ function createFlyingHeart() {
         const date = new Date(wish.time).toLocaleString("vi-VN");
         p.className = "wish-item";
         p.innerHTML = `
-          <p><strong>${wish.name}</strong> 💬 <em>${wish.message}</em></p>
+          <p><strong>Người gửi: ${wish.name}</strong></p>
+          <p>Lời chúc:<em>${wish.message}</em></p>
           <span>${date}</span>
         `;
         wishesList.appendChild(p);
