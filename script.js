@@ -85,10 +85,16 @@ function showSlides() {
 
 // Nút điều hướng
 function plusSlides(n) {
-  slideIndex += n - 1;
-  clearTimeout(slideTimer); // reset timer
+  const slides = document.getElementsByClassName("slide");
+  slideIndex += n;
+
+  if (slideIndex > slides.length) slideIndex = 1;
+  if (slideIndex < 1) slideIndex = slides.length;
+
+  clearTimeout(slideTimer);
   showSlides();
 }
+
 
 // Khi click vào chấm
 function currentSlide(n) {
