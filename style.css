@@ -197,11 +197,13 @@ footer {
     gap: 10px;
     max-width: 1000px;
     margin: 0 auto;
+    align-items: center;
+    justify-items: center;
 }
 
 .album-grid img {
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 125px;
+    max-height: 125px;
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
