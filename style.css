@@ -176,31 +176,29 @@ footer {
 
 #album {
   text-align: center;
-  padding: 60px 20px;
   background: #fffaf9;
 }
 
 #album h2 {
-  font-size: 2em;
   margin-bottom: 30px;
   color: #b35a4a;
 }
 
 .album-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  max-width: 1000px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .album-grid img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 120px;
+    max-height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .album-grid img:hover {
