@@ -249,3 +249,48 @@ function openLightbox(src) {
   lightbox.style.alignItems = 'center';
 }
 
+let score = 0;
+let isHeartBright = false;
+let gameStarted = false;
+let timer;
+
+function startGame() {
+  score = 0;
+  gameStarted = true;
+  let timeLeft = 10;
+  document.getElementById("score").textContent = "0";
+  
+  // Tim đập mỗi 1s
+  timer = setInterval(() => {
+    isHeartBright = true;
+    document.getElementById("heart").classList.add("bright");
+    setTimeout(() => {
+      isHeartBright = false;
+      document.getElementById("heart").classList.remove("bright");
+    }, 300);
+    
+    timeLeft--;
+    if (timeLeft <= 0) endGame();
+  }, 1000);
+}
+
+function kiss() {
+  if (!gameStarted) return;
+  if (isHeartBright) {
+    score++;
+    document.getElementById("heart").classList.add("pop");
+    setTimeout(() => document.getElementById("heart").classList.remove("pop"), 200);
+  } else {
+    score--;
+  }
+  document.getElementById("score").textContent = score;
+}
+
+function endGame() {
+  clearInterval(timer);
+  gameStarted = false;
+  let msg = score > 7 ? "💕 Tình yêu hoàn hảo 100%!" :
+            score > 3 ? "😘 Còn hơi ngại ngùng nha!" :
+                        "😂 Cưới về luyện thêm nha!";
+  alert(msg);
+}
