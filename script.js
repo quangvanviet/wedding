@@ -56,3 +56,40 @@ const bgMusic = document.getElementById('bgMusic');
 document.body.addEventListener('click', () => {
   bgMusic.play().catch(() => {});
 }, { once: true });
+
+// === SLIDESHOW ẢNH CƯỚI ===
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let slides = document.getElementsByClassName("slide");
+  let dots = document.getElementsByClassName("dot");
+  
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) { slideIndex = 1 }
+  
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
+  
+  setTimeout(showSlides, 4000); // đổi ảnh mỗi 4 giây
+}
+
+// Nút điều hướng
+function plusSlides(n) {
+  slideIndex += n - 1;
+  showSlides();
+}
+
+// Khi click vào chấm
+function currentSlide(n) {
+  slideIndex = n - 1;
+  showSlides();
+}
+
