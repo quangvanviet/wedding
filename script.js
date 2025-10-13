@@ -60,15 +60,33 @@ window.addEventListener("resize", () => {
 
 
 // 💌 Lời chúc
-document.getElementById('wishForm').addEventListener('submit', function(e) {
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx_isApp_GkwLDY8E2u2SWFVc6MobFCivqR0cEpSKK6wMwvFE0NH7ATWttl7ER9HQ0/exec';
+
+document.getElementById('wishForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const name = document.getElementById('name').value;
-  const message = document.getElementById('message').value;
-  const wishList = document.getElementById('wishList');
-  const newWish = document.createElement('p');
-  newWish.innerHTML = `<strong>${name}:</strong> ${message}`;
-  wishList.prepend(newWish);
-  this.reset();
+  
+  const name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+  
+  if (!name || !message) {
+    alert("Vui lòng nhập đầy đủ tên và lời chúc 💌");
+    return;
+  }
+  
+  try {
+    await fetch(scriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, message })
+    });
+
+    // Hiển thị popup cảm ơn
+    alert("Cảm ơn bạn đã gửi lời chúc 💖 Chúc bạn một ngày thật vui!");
+    this.reset();
+  } catch (err) {
+    alert("Có lỗi xảy ra khi gửi lời chúc 😢 Vui lòng thử lại sau.");
+    console.error(err);
+  }
 });
 
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
