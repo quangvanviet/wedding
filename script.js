@@ -10,34 +10,49 @@ function resizeCanvas() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
-function createFlower() {
+function createHeart() {
   const x = Math.random() * canvas.width;
   const y = 0;
   const size = Math.random() * 15 + 10;
   const speed = Math.random() * 1 + 0.5;
   const drift = Math.random() * 2 - 1;
-  flowers.push({ x, y, size, speed, drift });
+  hearts.push({ x, y, size, speed, drift, angle: Math.random() * Math.PI });
 }
 
-function drawFlower(flower) {
+function drawHeart(heart) {
+  const { x, y, size, angle } = heart;
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.rotate(angle);
+  ctx.scale(size / 30, size / 30); // co giãn kích thước trái tim
+
   ctx.beginPath();
-  ctx.fillStyle = `rgba(255,182,193,0.8)`;
-  ctx.arc(flower.x, flower.y, flower.size / 2, 0, Math.PI * 2);
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-15, -15, -30, 10, 0, 30);
+  ctx.bezierCurveTo(30, 10, 15, -15, 0, 0);
+  ctx.fillStyle = "rgba(255, 105, 180, 0.8)";
   ctx.fill();
+  ctx.restore();
 }
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (Math.random() < 0.2) createFlower();
-  flowers.forEach((f, i) => {
-    f.y += f.speed;
-    f.x += f.drift;
-    if (f.y > canvas.height) flowers.splice(i, 1);
-    drawFlower(f);
+  if (Math.random() < 0.2) createHeart();
+
+  hearts.forEach((h, i) => {
+    h.y += h.speed;
+    h.x += h.drift;
+    h.angle += 0.02; // xoay nhẹ khi rơi
+    if (h.y > canvas.height + 30) hearts.splice(i, 1);
+    drawHeart(h);
   });
+
   requestAnimationFrame(animate);
 }
+
+let hearts = [];
 animate();
+
 
 // 💌 Lời chúc
 document.getElementById('wishForm').addEventListener('submit', function(e) {
