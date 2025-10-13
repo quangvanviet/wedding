@@ -64,27 +64,27 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbx_isApp_GkwLDY8E2u2S
 
 document.getElementById('wishForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  
   const name = document.getElementById('name').value.trim();
   const message = document.getElementById('message').value.trim();
-  
+
   if (!name || !message) {
-    showPopup("💌 Vui lòng nhập đầy đủ tên và lời chúc nhé!");
+    showPopup("💌 Vui lòng nhập tên và lời chúc!");
     return;
   }
 
   try {
-    await fetch(scriptURL, {
+    const resp = await fetch(scriptURL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, message })
     });
+    // bạn có thể kiểm tra resp JSON nếu muốn
 
-    showPopup("💖 Cảm ơn bạn đã gửi lời chúc! 💖");
+    showPopup("Cảm ơn bạn đã gửi lời chúc!");
     this.reset();
   } catch (err) {
-    console.error(err);
-    showPopup("😢 Có lỗi xảy ra khi gửi lời chúc, vui lòng thử lại!");
+    console.error("Lỗi gửi lời chúc:", err);
+    showPopup("Gửi lời chúc thất bại. Vui lòng thử lại!");
   }
 });
 
