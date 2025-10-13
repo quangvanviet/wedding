@@ -88,7 +88,6 @@ document.getElementById('wishForm').addEventListener('submit', async function(e)
   }
 });
 
-
 function showPopup(message) {
   // Tạo popup nếu chưa có
   let popup = document.getElementById('popupMessage');
@@ -103,12 +102,50 @@ function showPopup(message) {
   popup.style.display = 'flex';
   popup.style.opacity = '1';
 
-  // Ẩn dần sau 3 giây
+  // Thêm hiệu ứng trái tim bay
+  for (let i = 0; i < 10; i++) {
+    createFlyingHeart();
+  }
+
+  // Ẩn popup sau 3 giây
   setTimeout(() => {
     popup.style.opacity = '0';
     setTimeout(() => popup.style.display = 'none', 500);
   }, 3000);
 }
+
+// ❤️ Hàm tạo trái tim bay
+function createFlyingHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'flying-heart';
+  heart.innerHTML = '❤️';
+  document.body.appendChild(heart);
+
+  const startX = window.innerWidth / 2 - 50 + Math.random() * 100;
+  const startY = window.innerHeight / 2;
+  const duration = 2000 + Math.random() * 1000;
+  const offsetX = (Math.random() - 0.5) * 200;
+  const offsetY = -200 - Math.random() * 200;
+  const scale = 0.8 + Math.random() * 0.6;
+
+  heart.style.left = `${startX}px`;
+  heart.style.top = `${startY}px`;
+  heart.style.fontSize = `${24 * scale}px`;
+
+  // Animation
+  heart.animate([
+    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+    { transform: `translate(${offsetX}px, ${offsetY}px) scale(${scale})`, opacity: 0 }
+  ], {
+    duration,
+    easing: 'ease-out',
+    fill: 'forwards'
+  });
+
+  // Xóa sau khi animation kết thúc
+  setTimeout(() => heart.remove(), duration);
+}
+
 
 
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
