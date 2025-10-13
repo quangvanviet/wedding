@@ -159,18 +159,18 @@ function createFlyingHeart() {
     document.getElementById("closeWishesBtn").onclick = () => overlay.remove();
 
     // Load dữ liệu từ Firebase
-    const wishesRef = ref(db, "wishes");
-    onValue(wishesRef, (snapshot) => {
+    const wishesRef = db.ref("wishes");
+    wishesRef.on("value", (snapshot) => {
       const wishesList = document.getElementById("wishesList");
-      wishesList.innerHTML = ""; // Xóa cũ
+      wishesList.innerHTML = "";
       const data = snapshot.val();
+    
       if (!data) {
         wishesList.innerHTML = "<p>Chưa có lời chúc nào cả 💌</p>";
         return;
       }
-
-      // Duyệt qua danh sách lời chúc
-      const entries = Object.values(data).reverse(); // Mới nhất lên trên
+    
+      const entries = Object.values(data).reverse();
       for (const wish of entries) {
         const p = document.createElement("div");
         const date = new Date(wish.time).toLocaleString("vi-VN");
