@@ -71,11 +71,6 @@ const firebaseConfig = {
   measurementId: "G-TLF5PVGE8N"
 };
 
-// Khởi tạo Firebase
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const analytics = firebase.analytics();
-
   // === KẾT NỐI FIREBASE ===
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
