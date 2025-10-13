@@ -269,3 +269,20 @@ footer {
   text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
   user-select: none;
 }
+
+.view-wishes-btn {
+  background: #ffb6c1;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  transition: 0.2s;
+}
+.view-wishes-btn:hover {
+  background: #ff6fa1;
+  transform: scale(1.05);
+}
