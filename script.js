@@ -127,5 +127,8 @@ lightbox.addEventListener('click', () => {
 
 function openLightbox(src) {
   lightImg.src = src;
-  lightbox.style.display = 'block';
+  lightbox.style.display = 'flex';
+  lightbox.style.justifyContent = 'center';
+  lightbox.style.alignItems = 'center';
 }
+
