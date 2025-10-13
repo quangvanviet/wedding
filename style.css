@@ -240,3 +240,24 @@ footer {
   max-height: 98%;
 }
 
+#popupMessage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  color: #ff69b4;
+  border-radius: 15px;
+  padding: 20px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+
