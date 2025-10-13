@@ -99,3 +99,33 @@ function currentSlide(n) {
 
 // Bắt đầu slideshow
 showSlides()
+
+// === ALBUM ẢNH CƯỚI ===
+const albumGrid = document.getElementById('albumGrid');
+
+// Giả sử có 20 ảnh, đánh số từ 1.jpg -> 20.jpg
+const totalPhotos = 20; // bạn chỉ cần đổi con số này
+for (let i = 1; i <= totalPhotos; i++) {
+  const img = document.createElement('img');
+  img.src = `images/album/${i}.jpg`;
+  img.alt = `Ảnh cưới ${i}`;
+  img.addEventListener('click', () => openLightbox(img.src));
+  albumGrid.appendChild(img);
+}
+
+// Tạo lightbox
+const lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+document.body.appendChild(lightbox);
+
+const lightImg = document.createElement('img');
+lightbox.appendChild(lightImg);
+
+lightbox.addEventListener('click', () => {
+  lightbox.style.display = 'none';
+});
+
+function openLightbox(src) {
+  lightImg.src = src;
+  lightbox.style.display = 'block';
+}
