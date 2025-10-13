@@ -59,7 +59,7 @@ document.body.addEventListener('click', () => {
 
 // === SLIDESHOW ẢNH CƯỚI ===
 let slideIndex = 0;
-showSlides();
+let slideTimer; // giữ timer hiện tại
 
 function showSlides() {
   let slides = document.getElementsByClassName("slide");
@@ -68,6 +68,7 @@ function showSlides() {
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
+  
   slideIndex++;
   if (slideIndex > slides.length) { slideIndex = 1 }
   
@@ -78,18 +79,23 @@ function showSlides() {
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
   
-  setTimeout(showSlides, 4000); // đổi ảnh mỗi 4 giây
+  clearTimeout(slideTimer); // xóa timer cũ
+  slideTimer = setTimeout(showSlides, 4000); // đổi ảnh mỗi 4 giây
 }
 
 // Nút điều hướng
 function plusSlides(n) {
   slideIndex += n - 1;
+  clearTimeout(slideTimer); // reset timer
   showSlides();
 }
 
 // Khi click vào chấm
 function currentSlide(n) {
   slideIndex = n - 1;
+  clearTimeout(slideTimer); // reset timer
   showSlides();
 }
 
+// Bắt đầu slideshow
+showSlides()
