@@ -211,7 +211,6 @@ footer {
   display: none;
   position: fixed;
   z-index: 100;
-  padding: 50px;
   left: 0;
   top: 0;
   width: 100%;
@@ -221,9 +220,8 @@ footer {
 }
 
 #lightbox img {
-  margin: auto;
   display: block;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 98%;
+  max-height: 98%;
 }
 
