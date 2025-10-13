@@ -1,57 +1,62 @@
 // 🌸 Hoa rơi
 const canvas = document.getElementById('flowerCanvas');
 const ctx = canvas.getContext('2d');
-let flowers = [];
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+let hearts = [];
 
 function createHeart() {
   const x = Math.random() * canvas.width;
-  const y = 0;
+  const y = -10; // bắt đầu trên cùng
   const size = Math.random() * 15 + 10;
   const speed = Math.random() * 1 + 0.5;
   const drift = Math.random() * 2 - 1;
-  hearts.push({ x, y, size, speed, drift, angle: Math.random() * Math.PI });
+  const color = ["#ff7eb9", "#ff65a3", "#ff8fab", "#ffb6c1"][Math.floor(Math.random() * 4)];
+  hearts.push({ x, y, size, speed, drift, color, angle: Math.random() * Math.PI });
 }
 
-function drawHeart(heart) {
-  const { x, y, size, angle } = heart;
+function drawHeart(h) {
   ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(angle);
-  ctx.scale(size / 30, size / 30); // co giãn kích thước trái tim
-
+  ctx.translate(h.x, h.y);
+  ctx.rotate(h.angle);
+  ctx.scale(h.size / 30, h.size / 30);
   ctx.beginPath();
   ctx.moveTo(0, 0);
   ctx.bezierCurveTo(-15, -15, -30, 10, 0, 30);
   ctx.bezierCurveTo(30, 10, 15, -15, 0, 0);
-  ctx.fillStyle = "rgba(255, 105, 180, 0.8)";
+  ctx.fillStyle = h.color;
   ctx.fill();
   ctx.restore();
 }
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  if (Math.random() < 0.2) createHeart();
+
+  // tạo thêm tim ngẫu nhiên (và không vượt quá 100 tim)
+  if (Math.random() < 0.2 && hearts.length < 100) createHeart();
 
   hearts.forEach((h, i) => {
     h.y += h.speed;
-    h.x += h.drift;
-    h.angle += 0.02; // xoay nhẹ khi rơi
-    if (h.y > canvas.height + 30) hearts.splice(i, 1);
+    h.x += h.drift * 0.5;
+    h.angle += 0.02;
+
     drawHeart(h);
+
+    // nếu tim rơi ra ngoài khung thì xóa
+    if (h.y > canvas.height + 30) hearts.splice(i, 1);
   });
 
   requestAnimationFrame(animate);
 }
 
-let hearts = [];
 animate();
+
+// cập nhật kích thước canvas khi đổi cỡ màn hình
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 
 
 // 💌 Lời chúc
