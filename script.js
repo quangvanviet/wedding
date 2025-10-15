@@ -379,3 +379,11 @@ function openLightbox(src) {
   lightbox.style.justifyContent = 'center';
   lightbox.style.alignItems = 'center';
 }
+
+  const openBtn = document.getElementById("openCardBtn");
+  const container = document.querySelector(".envelope-container");
+
+  openBtn.addEventListener("click", () => {
+    container.classList.add("envelope-open");
+  });
+
