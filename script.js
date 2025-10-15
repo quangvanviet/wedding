@@ -244,6 +244,41 @@ function createFlyingHeart() {
   `;
   document.head.appendChild(style);
 
+
+//QR code
+document.querySelectorAll(".qr-image").forEach(img => {
+    img.addEventListener("click", () => {
+      // Tạo overlay
+      const overlay = document.createElement("div");
+      overlay.style = `
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+      `;
+      
+      // Tạo ảnh phóng to
+      const bigImg = document.createElement("img");
+      bigImg.src = img.src;
+      bigImg.style = `
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        transition: transform 0.3s ease;
+      `;
+      
+      // Khi click overlay thì đóng
+      overlay.addEventListener("click", () => overlay.remove());
+      
+      overlay.appendChild(bigImg);
+      document.body.appendChild(overlay);
+    });
+  });
+
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
 const bgMusic = document.getElementById('bgMusic');
 document.body.addEventListener('click', () => {
