@@ -190,6 +190,9 @@ footer {
 #album {
   text-align: center;
   background: #fffaf9;
+  border-radius: 15px;
+  box-shadow: rgb(253 125 184 / 82%) 0px 0px 20px;
+  padding: 1px;
 }
 
 #album h2 {
@@ -205,6 +208,7 @@ footer {
     margin: 0 auto;
     align-items: center;
     justify-items: center;
+    margin-bottom: 20px;
 }
 
 .album-grid img {
