@@ -177,7 +177,7 @@ function createFlyingHeart() {
         p.className = "wish-item";
         p.innerHTML = `
           <p><strong>Người gửi: ${wish.name}</strong></p>
-          <p>Lời chúc:<em>${wish.message}</em></p>
+          <p>Lời chúc: ${wish.message}</p>
           <span>${date}</span>
         `;
         wishesList.appendChild(p);
