@@ -292,3 +292,74 @@ footer {
   background: #ff6fa1;
   transform: scale(1.05);
 }
+
+/* Mở thiệp */
+.envelope-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fbe9e7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-door, .right-door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 1.5s ease-in-out;
+  z-index: 10;
+}
+
+.left-door img, .right-door img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.left-door {
+  left: 0;
+  transform-origin: left center;
+}
+
+.right-door {
+  right: 0;
+  transform-origin: right center;
+}
+
+.open-btn {
+  position: absolute;
+  z-index: 20;
+  padding: 15px 30px;
+  background-color: #ff6fa1;
+  border: none;
+  border-radius: 30px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.open-btn:hover {
+  transform: scale(1.05);
+}
+
+.envelope-open .left-door {
+  transform: rotateY(-100deg);
+}
+
+.envelope-open .right-door {
+  transform: rotateY(100deg);
+}
+
+.envelope-open .card-content {
+  opacity: 1;
+}
+
+.envelope-open .open-btn {
+  display: none;
+}
