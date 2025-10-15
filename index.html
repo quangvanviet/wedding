@@ -61,7 +61,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 18px;">
+    border-radius: 18px;
+    font-size: 15px;">
       <strong>Trân trọng kính mời bạn đến dự lễ thành hôn của Văn Việt & Thanh Quý!</strong>
     </p>
     
@@ -69,7 +70,7 @@
       flex-direction: row;
       align-content: center;
       justify-content: center;
-      align-items: flex-start; gap: 5px;">
+      align-items: flex-start; gap: 5px; font-size: 13px;">
       <!-- Nhà gái -->
       <div style="width: 50%; background: #f392b952; border-radius: 15px; min-height: 150px;">
         <p><strong>Tiệc tại nhà gái:</strong></p>
@@ -93,20 +94,20 @@
 
     <div class="qr-section">
       <h3>🎁 Mừng cưới trực tuyến 🎁</h3>
-      <p><small>Quét mã QR để gửi lời chúc và mừng cưới đến cô dâu & chú rể ❤️</small></p>
+      <p style="margin: 0px;">Quét mã QR để gửi lời chúc và mừng cưới đến cô dâu & chú rể <span style="color: red;">❤️</span></p>
       <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
           <!-- Cô dâu -->
           <div>
-              <p><small>Cô dâu</small></p>
+              <p>Cô dâu</p>
               <img src="images/album/1.jpg" alt="QR mừng cưới" class="qr-image" />
           </div>
           <!-- Chú rể -->
           <div>
-              <p><small>Chú rể</small></p>
+              <p>Chú rể</p>
               <img src="images/album/1.jpg" alt="QR mừng cưới" class="qr-image" />
           </div>
       </div>
-      <p><small>❤️ Cảm ơn tình cảm của bạn ❤️</small></p>
+      <p><span style="color: red;">❤️</span> Cảm ơn tình cảm của bạn <span style="color: red;">❤️</span></p>
     </div>
 
     <div class="message-form">
@@ -116,12 +117,13 @@
         <textarea id="message" placeholder="Lời chúc của bạn..." required></textarea>
         <button type="submit">Gửi lời chúc</button>
       </form>
-      <button id="viewWishesBtn" class="view-wishes-btn">Xem lời chúc</button>
+      <button id="viewWishesBtn" class="view-wishes-btn" style="display: none;">Xem lời chúc</button>
       <div id="wishList"></div>
     </div>
 
       <!-- ========== ALBUM ẢNH CƯỚI ========== -->
     <section id="album">
+      <h3>Ảnh cưới cô dâu & chú rể</h3>
       <div class="album-grid" id="albumGrid"></div>
     </section>
     
