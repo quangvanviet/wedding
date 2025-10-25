@@ -54,6 +54,9 @@ animate();
 
 // 🌸 Hoa rơi 2
 const canvas1 = document.getElementById('flowerCanvas1');
+const ctx1 = canvas1.getContext('2d');
+canvas1.width = window.innerWidth;
+canvas1.height = window.innerHeight;
 
 let hearts1 = [];
 
@@ -68,21 +71,21 @@ function createHeart1() {
 }
 
 function drawHeart1(h) {
-  ctx.save();
-  ctx.translate(h.x, h.y);
-  ctx.rotate(h.angle);
-  ctx.scale(h.size / 30, h.size / 30);
-  ctx.beginPath();
-  ctx.moveTo(0, 0);
-  ctx.bezierCurveTo(-15, -15, -30, 10, 0, 30);
-  ctx.bezierCurveTo(30, 10, 15, -15, 0, 0);
-  ctx.fillStyle = h.color;
-  ctx.fill();
-  ctx.restore();
+  ctx1.save();
+  ctx1.translate(h.x, h.y);
+  ctx1.rotate(h.angle);
+  ctx1.scale(h.size / 30, h.size / 30);
+  ctx1.beginPath();
+  ctx1.moveTo(0, 0);
+  ctx1.bezierCurveTo(-15, -15, -30, 10, 0, 30);
+  ctx1.bezierCurveTo(30, 10, 15, -15, 0, 0);
+  ctx1.fillStyle = h.color;
+  ctx1.fill();
+  ctx1.restore();
 }
 
 function animate1() {
-  ctx.clearRect(0, 0, canvas1.width, canvas1.height);
+  ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
   // tạo thêm tim ngẫu nhiên (và không vượt quá 100 tim)
   if (Math.random() < 0.2 && hearts.length < 10) createHeart1();
