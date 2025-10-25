@@ -126,7 +126,7 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;      /* đảm bảo ảnh luôn lấp đầy khung */
-  object-position: center;/* căn giữa ảnh */
+  object-position: center 30%;/* căn giữa ảnh */
   display: block;
   transition: transform 0.8s ease-in-out;
 }
