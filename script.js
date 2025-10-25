@@ -53,12 +53,12 @@ function animate() {
 animate();
 
 // 🌸 Hoa rơi 2
-const canvas = document.getElementById('flowerCanvas1');
+const canvas1 = document.getElementById('flowerCanvas1');
 
 let hearts1 = [];
 
 function createHeart1() {
-  const x = Math.random() * canvas.width;
+  const x = Math.random() * canvas1.width;
   const y = -10; // bắt đầu trên cùng
   const size = Math.random() * 15 + 10;
   const speed = Math.random() * 1 + 0.5;
@@ -82,7 +82,7 @@ function drawHeart1(h) {
 }
 
 function animate1() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas1.width, canvas1.height);
 
   // tạo thêm tim ngẫu nhiên (và không vượt quá 100 tim)
   if (Math.random() < 0.2 && hearts.length < 10) createHeart1();
@@ -95,7 +95,7 @@ function animate1() {
     drawHeart1(h);
 
     // nếu tim rơi ra ngoài khung thì xóa
-    if (h.y > canvas.height + 30) hearts.splice(i, 1);
+    if (h.y > canvas1.height + 30) hearts.splice(i, 1);
   });
 
   requestAnimationFrame(animate1);
@@ -107,6 +107,8 @@ animate1();
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  canvas1.width = window.innerWidth;
+  canvas1.height = window.innerHeight;
 });
 
 // 💌 Lời chúc
