@@ -4,19 +4,27 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let hearts = [];
+// 🌸 Hoa rơi 2
+const canvas1 = document.getElementById('flowerCanvas1');
+const ctx1 = canvas1.getContext('2d');
+canvas1.width = window.innerWidth;
+canvas1.height = window.innerHeight;
 
-function createHeart() {
+let hearts = [];
+let hearts1 = [];
+
+// ----------- Tạo và vẽ tim -----------
+function createHeart(arr, canvas) {
   const x = Math.random() * canvas.width;
-  const y = -10; // bắt đầu trên cùng
+  const y = -10;
   const size = Math.random() * 15 + 10;
   const speed = Math.random() * 1 + 0.5;
   const drift = Math.random() * 2 - 1;
   const color = ["#ff7eb9", "#ff65a3", "#ff8fab", "#ffb6c1"][Math.floor(Math.random() * 4)];
-  hearts.push({ x, y, size, speed, drift, color, angle: Math.random() * Math.PI });
+  arr.push({ x, y, size, speed, drift, color, angle: Math.random() * Math.PI });
 }
 
-function drawHeart(h) {
+function drawHeart(ctx, h) {
   ctx.save();
   ctx.translate(h.x, h.y);
   ctx.rotate(h.angle);
@@ -30,21 +38,31 @@ function drawHeart(h) {
   ctx.restore();
 }
 
+// ----------- Animation chung -----------
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
-  // tạo thêm tim ngẫu nhiên (và không vượt quá 100 tim)
-  if (Math.random() < 0.2 && hearts.length < 100) createHeart();
+  // tạo thêm tim ngẫu nhiên
+  if (Math.random() < 0.2 && hearts.length < 50) createHeart(hearts, canvas);
+  if (Math.random() < 0.1 && hearts1.length < 10) createHeart(hearts1, canvas1);
 
+  // cập nhật và vẽ hearts
   hearts.forEach((h, i) => {
     h.y += h.speed;
     h.x += h.drift * 0.5;
     h.angle += 0.02;
-
-    drawHeart(h);
-
-    // nếu tim rơi ra ngoài khung thì xóa
+    drawHeart(ctx, h);
     if (h.y > canvas.height + 30) hearts.splice(i, 1);
+  });
+
+  // cập nhật và vẽ hearts1 (lớp thứ hai)
+  hearts1.forEach((h, i) => {
+    h.y += h.speed * 0.3; // rơi nhanh hơn chút
+    h.x += h.drift * 0.6;
+    h.angle -= 0.015;
+    drawHeart(ctx1, h);
+    if (h.y > canvas1.height + 30) hearts1.splice(i, 1);
   });
 
   requestAnimationFrame(animate);
@@ -52,67 +70,14 @@ function animate() {
 
 animate();
 
-// 🌸 Hoa rơi 2
-const canvas1 = document.getElementById('flowerCanvas1');
-const ctx1 = canvas1.getContext('2d');
-canvas1.width = window.innerWidth;
-canvas1.height = window.innerHeight;
-
-let hearts1 = [];
-
-function createHeart1() {
-  const x = Math.random() * canvas1.width;
-  const y = -10; // bắt đầu trên cùng
-  const size = Math.random() * 15 + 10;
-  const speed = Math.random() * 1 + 0.5;
-  const drift = Math.random() * 2 - 1;
-  const color = ["#ff7eb9", "#ff65a3", "#ff8fab", "#ffb6c1"][Math.floor(Math.random() * 4)];
-  hearts1.push({ x, y, size, speed, drift, color, angle: Math.random() * Math.PI });
-}
-
-function drawHeart1(h) {
-  ctx1.save();
-  ctx1.translate(h.x, h.y);
-  ctx1.rotate(h.angle);
-  ctx1.scale(h.size / 30, h.size / 30);
-  ctx1.beginPath();
-  ctx1.moveTo(0, 0);
-  ctx1.bezierCurveTo(-15, -15, -30, 10, 0, 30);
-  ctx1.bezierCurveTo(30, 10, 15, -15, 0, 0);
-  ctx1.fillStyle = h.color;
-  ctx1.fill();
-  ctx1.restore();
-}
-
-function animate1() {
-  ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
-
-  // tạo thêm tim ngẫu nhiên (và không vượt quá 100 tim)
-  if (Math.random() < 0.2 && hearts.length < 10) createHeart1();
-
-  hearts.forEach((h, i) => {
-    h.y += h.speed;
-    h.x += h.drift * 0.5;
-    h.angle += 0.02;
-
-    drawHeart1(h);
-
-    // nếu tim rơi ra ngoài khung thì xóa
-    if (h.y > canvas1.height + 30) hearts.splice(i, 1);
-  });
-
-  requestAnimationFrame(animate1);
-}
-
-animate1();
-
-// cập nhật kích thước canvas khi đổi cỡ màn hình
-window.addEventListener("resize", () => {
+// ----------- Resize canvas khi thay đổi kích thước cửa sổ -----------
+window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   canvas1.width = window.innerWidth;
   canvas1.height = window.innerHeight;
 });
+
 
 // 💌 Lời chúc
   // === GỬI LỜI CHÚC ===
