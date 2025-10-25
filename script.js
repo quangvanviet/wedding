@@ -44,8 +44,8 @@ function animate() {
   ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
   // tạo thêm tim ngẫu nhiên
-  if (Math.random() < 0.2 && hearts.length < 80) createHeart(hearts, canvas);
-  if (Math.random() < 0.2 && hearts1.length < 15) createHeart(hearts1, canvas1);
+  if (Math.random() < 0.2 && hearts.length < 100) createHeart(hearts, canvas);
+  if (Math.random() < 0.2 && hearts1.length < 20) createHeart(hearts1, canvas1);
 
   // cập nhật và vẽ hearts
   hearts.forEach((h, i) => {
@@ -58,7 +58,7 @@ function animate() {
 
   // cập nhật và vẽ hearts1 (lớp thứ hai)
   hearts1.forEach((h, i) => {
-    h.y += h.speed * 0.6; // rơi nhanh hơn chút
+    h.y += h.speed * 0.7; // rơi nhanh hơn chút
     h.x += h.drift * 0.6;
     h.angle -= 0.015;
     drawHeart(ctx1, h);
