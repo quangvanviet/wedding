@@ -1,4 +1,4 @@
-// 🌸 Hoa rơi
+// 🌸 Hoa rơi 1
 const canvas = document.getElementById('flowerCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -51,6 +51,57 @@ function animate() {
 }
 
 animate();
+
+// 🌸 Hoa rơi 2
+const canvas = document.getElementById('flowerCanvas1');
+
+let hearts1 = [];
+
+function createHeart1() {
+  const x = Math.random() * canvas.width;
+  const y = -10; // bắt đầu trên cùng
+  const size = Math.random() * 15 + 10;
+  const speed = Math.random() * 1 + 0.5;
+  const drift = Math.random() * 2 - 1;
+  const color = ["#ff7eb9", "#ff65a3", "#ff8fab", "#ffb6c1"][Math.floor(Math.random() * 4)];
+  hearts1.push({ x, y, size, speed, drift, color, angle: Math.random() * Math.PI });
+}
+
+function drawHeart1(h) {
+  ctx.save();
+  ctx.translate(h.x, h.y);
+  ctx.rotate(h.angle);
+  ctx.scale(h.size / 30, h.size / 30);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-15, -15, -30, 10, 0, 30);
+  ctx.bezierCurveTo(30, 10, 15, -15, 0, 0);
+  ctx.fillStyle = h.color;
+  ctx.fill();
+  ctx.restore();
+}
+
+function animate1() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // tạo thêm tim ngẫu nhiên (và không vượt quá 100 tim)
+  if (Math.random() < 0.2 && hearts.length < 10) createHeart1();
+
+  hearts.forEach((h, i) => {
+    h.y += h.speed;
+    h.x += h.drift * 0.5;
+    h.angle += 0.02;
+
+    drawHeart1(h);
+
+    // nếu tim rơi ra ngoài khung thì xóa
+    if (h.y > canvas.height + 30) hearts.splice(i, 1);
+  });
+
+  requestAnimationFrame(animate1);
+}
+
+animate1();
 
 // cập nhật kích thước canvas khi đổi cỡ màn hình
 window.addEventListener("resize", () => {
