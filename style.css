@@ -42,7 +42,7 @@ canvas#flowerCanvas1 {
 }
 
 .invitation.show {
-  display: flex;
+  display: block;
   animation: fadeIn 1.2s forwards;
 }
 
