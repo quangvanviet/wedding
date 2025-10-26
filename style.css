@@ -369,7 +369,7 @@ footer {
 
 /* Mở thiệp */
 .envelope-container {
-    position: absolute;
+    position: absolute; 
     height: 100vh;
     perspective: 1000px;
     margin: 0 auto;
