@@ -309,9 +309,29 @@ document.querySelectorAll(".qr-image").forEach(img => {
 
 // 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
 const bgMusic = document.getElementById('bgMusic');
+
+// Hàm bật nhạc nếu chưa phát
+function ensureMusicPlaying() {
+  if (bgMusic.paused) {
+    bgMusic.play().catch(err => {
+      console.log("Chưa thể play nhạc:", err);
+    });
+  } else {
+    // Nhạc đang chạy → dừng interval
+    clearInterval(musicCheckInterval);
+  }
+}
+
+// Khi người dùng click bất kỳ trên body lần đầu → bật nhạc
 document.body.addEventListener('click', () => {
-  bgMusic.play().catch(() => {});
+  ensureMusicPlaying();
 }, { once: true });
+
+// Kiểm tra định kỳ mỗi 3 giây
+const musicCheckInterval = setInterval(() => {
+  ensureMusicPlaying();
+}, 3000);
+
 
 // === SLIDESHOW ẢNH CƯỚI ===
 let slideIndex = 1;
