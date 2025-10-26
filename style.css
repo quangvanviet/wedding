@@ -73,6 +73,7 @@ canvas#flowerCanvas1 {
   color: #444;
   max-width: 400px;
   margin: 0 auto;
+  margin-bottom: 40px;
 }
 
 .qr-section h3 {
@@ -249,11 +250,11 @@ footer {
 }
 
 #album {
-  text-align: center;
-  background: #fffaf9;
-  border-radius: 15px;
-  box-shadow: rgb(253 125 184 / 82%) 0px 0px 20px;
-  padding: 1px;
+    text-align: center;
+    background: #fed2e6e0;
+    border-radius: 15px;
+    box-shadow: rgb(253 125 184 / 82%) 0px 0px 100px;
+    padding: 1px;
 }
 
 #album h2 {
