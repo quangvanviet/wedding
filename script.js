@@ -334,33 +334,31 @@ const musicCheckInterval = setInterval(() => {
 
 
 // === SLIDESHOW ẢNH CƯỚI ===
-let slideIndex = 1;
+let slideIndex = 0; // bắt đầu từ 0
 let slideTimer;
 
 // Hiển thị ảnh hiện tại
 function showSlides() {
-  let slides = document.getElementsByClassName("slide");
-  let dots = document.getElementsByClassName("dot");
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".dot");
+
   if (slides.length === 0) return;
 
-  // vòng lại nếu vượt biên
-  if (slideIndex > slides.length) slideIndex = 1;
-  if (slideIndex < 1) slideIndex = slides.length;
+  // Ẩn tất cả slide
+  slides.forEach(slide => slide.style.display = "none");
 
-  // ẩn tất cả ảnh
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  // bỏ active khỏi dots
-  for (let i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
+  // Bỏ active khỏi tất cả dot
+  dots.forEach(dot => dot.classList.remove("active"));
 
-  // hiển thị ảnh hiện tại
-  slides[slideIndex - 1].style.display = "block";
-  if (dots[slideIndex - 1]) dots[slideIndex - 1].className += " active";
+  // Vòng lại nếu vượt biên
+  if (slideIndex >= slides.length) slideIndex = 0;
+  if (slideIndex < 0) slideIndex = slides.length - 1;
 
-  // reset timer tự động chạy
+  // Hiển thị slide hiện tại
+  slides[slideIndex].style.display = "block";
+  if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+
+  // Timer tự động chuyển slide sau 4s
   clearTimeout(slideTimer);
   slideTimer = setTimeout(() => {
     slideIndex++;
@@ -368,33 +366,20 @@ function showSlides() {
   }, 4000);
 }
 
-// Nút điều hướng
+// Prev / Next
 function plusSlides(n) {
-  slideIndex += n;          // chỉ thay đổi chỉ số
-  clearTimeout(slideTimer); // ngừng timer cũ
-  showSlides();             // hiển thị lại đúng ảnh
-}
-
-// Khi click vào chấm
-function currentSlide(n) {
-  slideIndex = n;
-  clearTimeout(slideTimer);
+  slideIndex += n;
   showSlides();
 }
 
-// Bắt đầu
-showSlides();
-
-
-// Khi click vào chấm
+// Click vào dot
 function currentSlide(n) {
-  slideIndex = n - 1;
-  clearTimeout(slideTimer); // reset timer
+  slideIndex = n;
   showSlides();
 }
 
 // Bắt đầu slideshow
-showSlides()
+showSlides();
 
 // === ALBUM ẢNH CƯỚI ===
 const albumGrid = document.getElementById('albumGrid');
