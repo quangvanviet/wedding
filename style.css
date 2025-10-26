@@ -369,11 +369,12 @@ footer {
 
 /* Mở thiệp */
 .envelope-container {
-  position: relative;
-  height: 100vh;
-  perspective: 1000px;
-  margin: 0 auto;
-  overflow: hidden;
+    position: absolute;
+    height: 100vh;
+    perspective: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
 }
 
 .left-door,
