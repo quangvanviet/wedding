@@ -413,11 +413,13 @@ const container = document.querySelector(".envelope-container");
 const containerOpenThiep = document.getElementById("OpenThiep");
 
 openBtn.addEventListener("click", () => {
-  container.classList.add("envelope-open");
+  containerOpenThiep.classList.add("OpenThiep-open");
+  setTimeout(() => {
+    container.classList.add("envelope-open");
   
   const invitation = document.querySelector(".invitation");
   invitation.style.display = "block";
-  containerOpenThiep.classList.add("OpenThiep-open");
+  
     
   // cho trình duyệt kịp render lại trước khi thêm class
   setTimeout(() => {
@@ -428,6 +430,8 @@ openBtn.addEventListener("click", () => {
     container.style.display = "none";
     containerOpenThiep.style.display = "none";
   }, 500); // delay nhỏ để transition hoạt động
+    
+  }, 1000); // delay nhỏ để transition hoạt động    
   
 });
 
