@@ -408,10 +408,12 @@ function openLightbox(src) {
   lightbox.style.alignItems = 'center';
 }
 
-  const openBtn = document.getElementById("openCardBtn");
-  const container = document.querySelector(".envelope-container");
+const openBtn = document.getElementById("openCardBtn");
+const container = document.querySelector(".envelope-container");
 
-  openBtn.addEventListener("click", () => {
-    container.classList.add("envelope-open");
-  });
+openBtn.addEventListener("click", () => {
+  container.classList.add("envelope-open");
+  const invitation = document.querySelector(".invitation");
+  invitation.classList.add("show"); // thêm class để hiện dần
+});
 
