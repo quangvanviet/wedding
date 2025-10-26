@@ -370,8 +370,7 @@ footer {
 /* Mở thiệp */
 .envelope-container {
   position: relative;
-  width: 300px;
-  height: 200px;
+  height: 100vh;
   perspective: 1000px;
   margin: 0 auto;
   overflow: hidden;
@@ -437,7 +436,7 @@ footer {
 /* Nút mở */
 .open-btn {
   position: absolute;
-  bottom: 10px;
+  bottom: 50%;
   left: 50%;
   transform: translateX(-50%);
   background: #ff8fab;
@@ -446,7 +445,7 @@ footer {
   padding: 8px 16px;
   border-radius: 25px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
   transition: background 0.3s;
   z-index: 3;
 }
