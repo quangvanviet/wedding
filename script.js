@@ -410,21 +410,24 @@ function openLightbox(src) {
 
 const openBtn = document.getElementById("openCardBtn");
 const container = document.querySelector(".envelope-container");
+const containerOpenThiep = document.getElementById("OpenThiep");
 
 openBtn.addEventListener("click", () => {
   container.classList.add("envelope-open");
   
   const invitation = document.querySelector(".invitation");
   invitation.style.display = "block";
-  
+  containerOpenThiep.classList.add("OpenThiep-open");
+    
   // cho trình duyệt kịp render lại trước khi thêm class
   setTimeout(() => {
     invitation.classList.add("show"); 
-  }, 200); // delay nhỏ để transition hoạt động
+  }, 50); // delay nhỏ để transition hoạt động
 
   setTimeout(() => {
     container.style.display = "none";
-  }, 1000); // delay nhỏ để transition hoạt động
+    containerOpenThiep.style.display = "none";
+  }, 300); // delay nhỏ để transition hoạt động
   
 });
 
