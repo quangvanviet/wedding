@@ -413,8 +413,13 @@ const container = document.querySelector(".envelope-container");
 
 openBtn.addEventListener("click", () => {
   container.classList.add("envelope-open");
+  
   const invitation = document.querySelector(".invitation");
-  invitation.classList.add("show"); // thêm class để hiện dần
-  invitation.style.display = "block"
+  invitation.style.display = "block";
+  
+  // cho trình duyệt kịp render lại trước khi thêm class
+  setTimeout(() => {
+    invitation.classList.add("show"); 
+  }, 50); // delay nhỏ để transition hoạt động
 });
 
