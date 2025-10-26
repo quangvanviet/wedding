@@ -443,11 +443,6 @@ footer {
   display: none;
 }
 
-.OpenThiep-open {
-  transform: translateY(-100%);
-  opacity: 1;
-}
-
 /* Nút mở */
 .open-btn {
     position: absolute;
