@@ -30,15 +30,29 @@ canvas#flowerCanvas1 {
 }
 
 .invitation {
-  position: absolute;
+  position: fixed; /* luôn trên màn hình, kể cả khi scroll */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   z-index: 1;
-  padding: 40px 20px;
+  padding: 20px; /* giảm padding cho mobile */
+  width: 90%; /* chiếm 90% viewport width */
   max-width: 600px;
-  margin: auto;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
   opacity: 0;
+}
+
+@media (max-width: 480px) {
+  .invitation {
+    padding: 15px;
+    width: 95%;
+    max-width: 95%;
+    font-size: 14px;
+  }
 }
 
 .invitation.show {
