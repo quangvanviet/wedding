@@ -442,3 +442,8 @@ footer {
 .open-btn:hover {
   background: #ff6f91;
 }
+
+.envelope-open .left-door,
+.envelope-open .right-door {
+  opacity: 0;
+}
