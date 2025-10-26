@@ -63,13 +63,63 @@ canvas#flowerCanvas1 {
 }
 
 .qr-section {
-  margin-top: 40px;
+  text-align: center;
+  background: linear-gradient(180deg, #fff9fa 0%, #fff 100%);
+  border: 1px solid #ffd6e3;
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: 0 3px 10px rgba(255, 192, 203, 0.3);
+  font-family: "Segoe UI", sans-serif;
+  color: #444;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.qr-section h3 {
+  color: #d16d84;
+  margin-bottom: 10px;
+}
+
+.qr-images {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.qr-images div {
+  text-align: center;
 }
 
 .qr-image {
-  width: 180px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  width: 130px;
+  height: 130px;
+  border-radius: 10px;
+  border: 2px solid #ffd6e3;
+  box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.qr-image:hover {
+  transform: scale(1.05);
+}
+
+.qr-button {
+  background: #ff8fab;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.qr-button:hover {
+  background: #ff7599;
 }
 
 .message-form {
