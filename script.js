@@ -415,5 +415,6 @@ openBtn.addEventListener("click", () => {
   container.classList.add("envelope-open");
   const invitation = document.querySelector(".invitation");
   invitation.classList.add("show"); // thêm class để hiện dần
+  invitation.style.display = "block"
 });
 
