@@ -85,14 +85,13 @@ canvas#flowerCanvas1 {
 
 .qr-section {
   text-align: center;
-  background: linear-gradient(180deg, #fff9fa 0%, #fff 100%);
+  background: linear-gradient(180deg, #ffebef96 0%, #ffffff61 100%);
   border: 1px solid #ffd6e3;
   border-radius: 20px;
   padding: 25px 20px;
   box-shadow: 0 3px 10px rgba(255, 192, 203, 0.3);
   font-family: "Segoe UI", sans-serif;
   color: #444;
-  max-width: 400px;
   margin: 0 auto;
   margin-bottom: 40px;
 }
@@ -116,8 +115,7 @@ canvas#flowerCanvas1 {
 }
 
 .qr-image {
-  width: 130px;
-  height: 130px;
+  height: 180px;
   border-radius: 10px;
   border: 2px solid #ffd6e3;
   box-shadow: 0 2px 8px rgba(255, 182, 193, 0.3);
@@ -125,7 +123,7 @@ canvas#flowerCanvas1 {
 }
 
 .qr-image:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .qr-button {
