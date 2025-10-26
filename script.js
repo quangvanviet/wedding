@@ -78,6 +78,13 @@ window.addEventListener('resize', () => {
   canvas1.height = window.innerHeight;
 });
 
+function toggleQR() {
+  const qr = document.getElementById('qrContainer');
+  const btn = document.querySelector('.qr-button');
+  const isVisible = qr.style.display === 'flex';
+  qr.style.display = isVisible ? 'none' : 'flex';
+  btn.textContent = isVisible ? '💌 Tặng quà' : '💝 Ẩn mã QR';
+}
 
 // 💌 Lời chúc
   // === GỬI LỜI CHÚC ===
