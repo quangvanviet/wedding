@@ -422,12 +422,12 @@ openBtn.addEventListener("click", () => {
   // cho trình duyệt kịp render lại trước khi thêm class
   setTimeout(() => {
     invitation.classList.add("show"); 
-  }, 50); // delay nhỏ để transition hoạt động
+  }, 200); // delay nhỏ để transition hoạt động
 
   setTimeout(() => {
     container.style.display = "none";
     containerOpenThiep.style.display = "none";
-  }, 300); // delay nhỏ để transition hoạt động
+  }, 500); // delay nhỏ để transition hoạt động
   
 });
 
