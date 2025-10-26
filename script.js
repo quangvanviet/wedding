@@ -385,14 +385,14 @@ showSlides();
 const albumGrid = document.getElementById('albumGrid');
 const totalPhotos = 20;
 const photoUrls = [];
-for(let i=1;i<=totalPhotos;i++){
-  const src = `https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/${i}.jpg`;
+for(let i=0; i<totalPhotos; i++){
+  const src = `https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/${i+1}.jpg`;
   photoUrls.push(src);
 
   const img = document.createElement('img');
   img.src = src;
-  img.alt = `Ảnh cưới ${i}`;
-  img.addEventListener('click', () => openLightbox(i));
+  img.alt = `Ảnh cưới ${i+1}`;
+  img.addEventListener('click', () => openLightbox(i)); 
   albumGrid.appendChild(img);
 }
 
