@@ -38,7 +38,19 @@ canvas#flowerCanvas1 {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0;
 }
+
+.invitation.show {
+  display: flex;
+  animation: fadeIn 1.2s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 
 .couple-photo {
   width: 80%;
