@@ -460,6 +460,17 @@ function handleGesture(){
   }
 }
 
+const closeBtn = document.createElement('button');
+closeBtn.className = 'close-btn';
+closeBtn.innerHTML = '&times;';
+lightbox.appendChild(closeBtn);
+
+closeBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // không kích hoạt click prev/next
+  lightbox.style.display = 'none';
+});
+
+
 
 const openBtn = document.getElementById("openCardBtn");
 const container = document.querySelector(".envelope-container");
