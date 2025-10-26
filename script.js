@@ -413,7 +413,9 @@ const container = document.querySelector(".envelope-container");
 const containerOpenThiep = document.getElementById("OpenThiep");
 
 openBtn.addEventListener("click", () => {
-  containerOpenThiep.classList.add("OpenThiep-open");
+  containerOpenThiep.style.transform = "translate(-50%, -250%)";
+  containerOpenThiep.style.opacity = 0;
+  
   setTimeout(() => {
     container.classList.add("envelope-open");
   
