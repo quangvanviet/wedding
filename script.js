@@ -383,7 +383,7 @@ const albumGrid = document.getElementById('albumGrid');
 const totalPhotos = 20; // bạn chỉ cần đổi con số này
 for (let i = 1; i <= totalPhotos; i++) {
   const img = document.createElement('img');
-  img.src = `images/album/${i}.jpg`;
+  img.src = `https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/${i}.jpg`;
   img.alt = `Ảnh cưới ${i}`;
   img.addEventListener('click', () => openLightbox(img.src));
   albumGrid.appendChild(img);
