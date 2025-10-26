@@ -1,10 +1,8 @@
-// 🌸 Hoa rơi 1
 const canvas = document.getElementById('flowerCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// 🌸 Hoa rơi 2
 const canvas1 = document.getElementById('flowerCanvas1');
 const ctx1 = canvas1.getContext('2d');
 canvas1.width = window.innerWidth;
@@ -13,7 +11,7 @@ canvas1.height = window.innerHeight;
 let hearts = [];
 let hearts1 = [];
 
-// ----------- Tạo và vẽ tim -----------
+// Tạo và vẽ tim
 function createHeart(arr, canvas) {
   const x = Math.random() * canvas.width;
   const y = -10;
@@ -38,16 +36,16 @@ function drawHeart(ctx, h) {
   ctx.restore();
 }
 
-// ----------- Animation chung -----------
+// Animation tim rơi
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
 
-  // tạo thêm tim ngẫu nhiên
+  // tạo tim ngẫu nhiên
   if (Math.random() < 0.2 && hearts.length < 100) createHeart(hearts, canvas);
   if (Math.random() < 0.2 && hearts1.length < 20) createHeart(hearts1, canvas1);
 
-  // cập nhật và vẽ hearts
+  // cập nhật tim 1
   hearts.forEach((h, i) => {
     h.y += h.speed;
     h.x += h.drift * 0.5;
@@ -56,9 +54,9 @@ function animate() {
     if (h.y > canvas.height + 30) hearts.splice(i, 1);
   });
 
-  // cập nhật và vẽ hearts1 (lớp thứ hai)
+  // cập nhật và vẽ tim 2
   hearts1.forEach((h, i) => {
-    h.y += h.speed * 0.7; // rơi nhanh hơn chút
+    h.y += h.speed * 0.7;
     h.x += h.drift * 0.6;
     h.angle -= 0.015;
     drawHeart(ctx1, h);
@@ -70,7 +68,7 @@ function animate() {
 
 animate();
 
-// ----------- Resize canvas khi thay đổi kích thước cửa sổ -----------
+// Resize canvas khi thay đổi kích thước cửa sổ
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -86,8 +84,7 @@ function toggleQR() {
   btn.textContent = isVisible ? '💌 Tặng quà' : '💝 Ẩn mã QR';
 }
 
-// 💌 Lời chúc
-  // === GỬI LỜI CHÚC ===
+// Lời chúc
   document.getElementById("wishForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const name = document.getElementById("name").value.trim();
@@ -113,7 +110,7 @@ function toggleQR() {
 });
 
 function showPopup(message) {
-  // Tạo popup nếu chưa có
+  // Tạo popup
   let popup = document.getElementById('popupMessage');
   if (!popup) {
     popup = document.createElement('div');
@@ -126,19 +123,17 @@ function showPopup(message) {
   popup.style.display = 'flex';
   popup.style.opacity = '1';
 
-  // Thêm hiệu ứng trái tim bay
   for (let i = 0; i < 10; i++) {
     createFlyingHeart();
   }
 
-  // Ẩn popup sau 3 giây
   setTimeout(() => {
     popup.style.opacity = '0';
     setTimeout(() => popup.style.display = 'none', 500);
   }, 3000);
 }
 
-// ❤️ Hàm tạo trái tim bay
+// Tạo trái tim bay ngẫu nhiên
 function createFlyingHeart() {
   const heart = document.createElement('div');
   heart.className = 'flying-heart';
@@ -170,7 +165,7 @@ function createFlyingHeart() {
   setTimeout(() => heart.remove(), duration);
 }
 
-// ====== NÚT XEM LỜI CHÚC ======
+// NÚT XEM LỜI CHÚC
   document.getElementById("viewWishesBtn").addEventListener("click", async () => {
     const overlay = document.createElement("div");
     overlay.className = "wishes-overlay";
@@ -213,7 +208,7 @@ function createFlyingHeart() {
     });
   });
 
-  // ====== CSS CHO POPUP ======
+  // CSS CHO POPUP
   const style = document.createElement("style");
   style.textContent = `
     .wishes-overlay {
@@ -307,22 +302,22 @@ document.querySelectorAll(".qr-image").forEach(img => {
     });
   });
 
-// 🎵 Bắt đầu nhạc khi người dùng tương tác (fix autoplay)
+// Bắt đầu nhạc
 const bgMusic = document.getElementById('bgMusic');
 
-// Hàm bật nhạc nếu chưa phát
+// Bật nhạc nếu chưa phát
 function ensureMusicPlaying() {
   if (bgMusic.paused) {
     bgMusic.play().catch(err => {
       console.log("Chưa thể play nhạc:", err);
     });
   } else {
-    // Nhạc đang chạy → dừng interval
+    // Dừng interval nếu nhạc đang chạy
     clearInterval(musicCheckInterval);
   }
 }
 
-// Khi người dùng click bất kỳ trên body lần đầu → bật nhạc
+// Khi người dùng click thì bật nhạc
 document.body.addEventListener('click', () => {
   ensureMusicPlaying();
 }, { once: true });
@@ -333,8 +328,8 @@ const musicCheckInterval = setInterval(() => {
 }, 3000);
 
 
-// === SLIDESHOW ẢNH CƯỚI ===
-let slideIndex = 0; // bắt đầu từ 0
+// SLIDESHOW ẢNH CƯỚI
+let slideIndex = 0;
 let slideTimer;
 
 // Hiển thị ảnh hiện tại
@@ -347,10 +342,10 @@ function showSlides() {
   // Ẩn tất cả slide
   slides.forEach(slide => slide.style.display = "none");
 
-  // Bỏ active khỏi tất cả dot
+  // Bỏ active
   dots.forEach(dot => dot.classList.remove("active"));
 
-  // Vòng lại nếu vượt biên
+  // Vòng lại nếu vượt quá
   if (slideIndex >= slides.length) slideIndex = 0;
   if (slideIndex < 0) slideIndex = slides.length - 1;
 
@@ -366,13 +361,13 @@ function showSlides() {
   }, 4000);
 }
 
-// Prev / Next
+//Nút tiến lùi
 function plusSlides(n) {
   slideIndex += n;
   showSlides();
 }
 
-// Click vào dot
+// Click vào chấm
 function currentSlide(n) {
   slideIndex = n;
   showSlides();
@@ -381,7 +376,7 @@ function currentSlide(n) {
 // Bắt đầu slideshow
 showSlides();
 
-// === ALBUM ẢNH CƯỚI ===
+// ALBUM ẢNH CƯỚI
 const albumGrid = document.getElementById('albumGrid');
 const totalPhotos = 20;
 const photoUrls = [];
@@ -407,14 +402,14 @@ lightbox.appendChild(lightImg);
 
 let currentIndex = 0;
 
-// Open lightbox
+// Mở lightbox
 function openLightbox(index){
   currentIndex = index;
   lightImg.src = photoUrls[currentIndex];
   lightbox.style.display = 'flex';
 }
 
-// Click vùng trái/phải để prev/next
+// Click vùng trái/phải
 lightbox.addEventListener('click', (e)=>{
   const rect = lightbox.getBoundingClientRect();
   if(e.clientX < rect.width/2){
@@ -424,7 +419,7 @@ lightbox.addEventListener('click', (e)=>{
   }
 });
 
-// Loop next/prev
+// Lặp ảnh khi bấm tiến lừi
 function showNext(){
   currentIndex = (currentIndex+1)%totalPhotos;
   lightImg.src = photoUrls[currentIndex];
@@ -434,7 +429,7 @@ function showPrev(){
   lightImg.src = photoUrls[currentIndex];
 }
 
-// Close lightbox on ESC
+// Đóng ảnh khi bấm esc
 document.addEventListener('keydown', (e)=>{
   if(lightbox.style.display==='flex'){
     if(e.key==='Escape') lightbox.style.display='none';
@@ -443,7 +438,7 @@ document.addEventListener('keydown', (e)=>{
   }
 });
 
-// Swipe support cho mobile
+// vuốt trên điện thoại
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -457,10 +452,10 @@ lightbox.addEventListener('touchend',(e)=>{
 });
 
 function handleGesture(){
-  if(touchEndX < touchStartX - 30){ // swipe left
+  if(touchEndX < touchStartX - 30){ // Trái
     showNext();
   }
-  if(touchEndX > touchStartX + 30){ // swipe right
+  if(touchEndX > touchStartX + 30){ // phải
     showPrev();
   }
 }
@@ -471,7 +466,7 @@ closeBtn.innerHTML = '&times;';
 lightbox.appendChild(closeBtn);
 
 closeBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // không kích hoạt click prev/next
+  e.stopPropagation(); // không kích hoạt khi bấm tiến lùi
   lightbox.style.display = 'none';
 });
 
@@ -491,18 +486,16 @@ openBtn.addEventListener("click", () => {
   const invitation = document.querySelector(".invitation");
   invitation.style.display = "block";
   
-    
-  // cho trình duyệt kịp render lại trước khi thêm class
   setTimeout(() => {
     invitation.classList.add("show"); 
-  }, 50); // delay nhỏ để transition hoạt động
+  }, 50); 
 
   setTimeout(() => {
     container.style.display = "none";
     containerOpenThiep.style.display = "none";
-  }, 500); // delay nhỏ để transition hoạt động
+  }, 500);
     
-  }, 1000); // delay nhỏ để transition hoạt động    
+  }, 1000); 
   
 });
 
