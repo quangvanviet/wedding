@@ -332,22 +332,23 @@ footer {
 }
 
 #lightbox .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  color: #fff;
-  background: rgba(0,0,0,0.3);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  text-align: center;
-  line-height: 38px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: #fff;
+    background: rgb(255 255 255 / 20%);
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #lightbox .close-btn:hover {
-  background: rgba(0,0,0,0.6);
+  background: rgb(146 76 144);
 }
 
 
