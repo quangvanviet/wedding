@@ -23,218 +23,222 @@
 
   <canvas id="flowerCanvas"></canvas>
   <canvas id="flowerCanvas1"></canvas>
-<div class="envelope-container" style="">
-  <!-- Nút mở thiệp -->
-  <div id="openThiep" style="position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 300px;
-    border-radius: 20px;
-    z-index: 3;
-    background: url(https://quangvanviet.github.io/wedding/images/OpenThiep.jpg) center center no-repeat;
-    background-size: 250px;
-    background-position: center 80%;">
+
+  <div style="position: relative">
+      
+    <div class="envelope-container" style="">
+      <!-- Nút mở thiệp -->
+      <div id="openThiep" style="position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 300px;
+        border-radius: 20px;
+        z-index: 3;
+        background: url(https://quangvanviet.github.io/wedding/images/OpenThiep.jpg) center center no-repeat;
+        background-size: 250px;
+        background-position: center 80%;">
+        
+        <button id="openCardBtn" class="open-btn">Mở thiệp</button>
+      </div>
+      
     
-    <button id="openCardBtn" class="open-btn">Mở thiệp</button>
-  </div>
+      <!-- Cánh trái -->
+      <div class="left-door">
+        <div style="transform: scaleX(-1);">
+          <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/1.jpg" alt="Cánh trái thiệp">
+        </div>
+      </div>
+    
+      <!-- Cánh phải -->
+      <div class="right-door">
+        <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/1.jpg" alt="Cánh phải thiệp">
+      </div>
+    </div>
   
-
-  <!-- Cánh trái -->
-  <div class="left-door">
-    <div style="transform: scaleX(-1);">
-      <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/1.jpg" alt="Cánh trái thiệp">
-    </div>
-  </div>
-
-  <!-- Cánh phải -->
-  <div class="right-door">
-    <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/1.jpg" alt="Cánh phải thiệp">
-  </div>
-</div>
-
-  <div class="invitation" style="display:none;">
-    <h1 style="font-size: 22px; margin-top: 30px;">💍 Văn Việt & Thanh Quý 💍</h1>
-          <!-- Slide ảnh cưới -->
-      <div class="slideshow-container">
-      
-        <div class="slide fade">
-          <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/1.jpg" alt="Ảnh cưới 1">
+    <div class="invitation" style="display:none;">
+      <h1 style="font-size: 22px; margin-top: 30px;">💍 Văn Việt & Thanh Quý 💍</h1>
+            <!-- Slide ảnh cưới -->
+        <div class="slideshow-container">
+        
+          <div class="slide fade">
+            <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/1.jpg" alt="Ảnh cưới 1">
+          </div>
+        
+          <div class="slide fade">
+            <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/2.jpg" alt="Ảnh cưới 2">
+          </div>
+        
+          <div class="slide fade">
+            <img style="object-position: center 45%;" src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/4.jpg" alt="Ảnh cưới 3">
+          </div>
+        
+          <div class="slide fade">
+            <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/6.jpg" alt="Ảnh cưới 4">
+          </div>
+        
+          <div class="slide fade">
+            <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/7.jpg" alt="Ảnh cưới 5">
+          </div>
+        
+          <!-- Nút điều hướng -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-      
-        <div class="slide fade">
-          <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/2.jpg" alt="Ảnh cưới 2">
+        
+        <br>
+        
+        <!-- Chấm nhỏ bên dưới -->
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+          <span class="dot" onclick="currentSlide(5)"></span>
         </div>
-      
-        <div class="slide fade">
-          <img style="object-position: center 45%;" src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/4.jpg" alt="Ảnh cưới 3">
-        </div>
-      
-        <div class="slide fade">
-          <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/6.jpg" alt="Ảnh cưới 4">
-        </div>
-      
-        <div class="slide fade">
-          <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/7.jpg" alt="Ảnh cưới 5">
-        </div>
-      
-        <!-- Nút điều hướng -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-      </div>
-      
-      <br>
-      
-      <!-- Chấm nhỏ bên dưới -->
-      <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-        <span class="dot" onclick="currentSlide(5)"></span>
-      </div>
-
-
-    <p class="intro" style="background: #ff6f91;
-    color: white;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    font-size: 15px;">
-      <strong>Trân trọng kính mời bạn đến dự lễ thành hôn của Văn Việt & Thanh Quý!</strong>
-    </p>
-    
-    <div style="
+  
+  
+      <p class="intro" style="background: #ff6f91;
+      color: white;
+      height: 60px;
       display: flex;
-      flex-direction: row;
+      align-items: center;
       justify-content: center;
-      align-items: flex-start;
-      gap: 20px;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 14px;
-      color: #444;
-      flex-wrap: wrap;
-      background: #fff9f9;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(255, 182, 193, 0.3);
-    ">
-    
-      <!-- Nhà gái -->
+      border-radius: 18px;
+      font-size: 15px;">
+        <strong>Trân trọng kính mời bạn đến dự lễ thành hôn của Văn Việt & Thanh Quý!</strong>
+      </p>
+      
       <div style="
-        flex: 1;
-        min-width: 300px;
-        background: linear-gradient(180deg, #ffeef2 0%, #fff 100%);
-        border: 1px solid #fcd6de;
-        border-radius: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 14px;
+        color: #444;
+        flex-wrap: wrap;
+        background: #fff9f9;
         padding: 20px;
-        box-shadow: 0 2px 6px rgba(255, 182, 193, 0.25);
-      ">
-        <h3 style="
-          text-align: center;
-          color: #d16d84;
-          font-weight: 600;
-          margin-bottom: 15px;
-        ">
-          💕 Tiệc tại nhà gái 💕
-        </h3>
-    
-        <p style="margin: 6px 0;"><strong>Thời gian:</strong> 11h00, ngày 07 tháng 11 năm 2025 (Thứ Sáu)</p>
-        <p style="margin: 6px 0;"><strong>Địa điểm:</strong> Nhà văn hóa Bản Hin Cáp, Xã Mường Và, Huyện Sốp Cộp, Tỉnh Sơn La.</p>
-        <a href="https://maps.app.goo.gl/SccXtCLE6sZNZ9y29" 
-           style="display: inline-block;
-                  background: #ff8fab;
-                  color: #fff;
-                  padding: 6px 14px;
-                  border-radius: 25px;
-                  text-decoration: none;
-                  font-size: 13px;
-                  margin-top: 8px;
-                  transition: 0.3s;">
-           📍 Xem bản đồ
-        </a>
-      </div>
-    
-      <!-- Nhà trai -->
-      <div style="
-        flex: 1;
-        min-width: 300px;
-        background: linear-gradient(180deg, #fff7f3 0%, #fff 100%);
-        border: 1px solid #f8dccc;
         border-radius: 20px;
-        padding: 20px;
-        box-shadow: 0 2px 6px rgba(255, 198, 150, 0.25);
+        box-shadow: 0 2px 10px rgba(255, 182, 193, 0.3);
       ">
-        <h3 style="
-          text-align: center;
-          color: #d59c6a;
-          font-weight: 600;
-          margin-bottom: 15px;
+      
+        <!-- Nhà gái -->
+        <div style="
+          flex: 1;
+          min-width: 300px;
+          background: linear-gradient(180deg, #ffeef2 0%, #fff 100%);
+          border: 1px solid #fcd6de;
+          border-radius: 20px;
+          padding: 20px;
+          box-shadow: 0 2px 6px rgba(255, 182, 193, 0.25);
         ">
-          💍 Tiệc tại nhà trai 💍
-        </h3>
-    
-        <p style="margin: 6px 0;"><strong>Thời gian:</strong> 11h00, ngày 08 tháng 11 năm 2025 (Thứ Bảy)</p>
-        <p style="margin: 6px 0;"><strong>Địa điểm:</strong> Khách sạn Sen Vàng, Số 3 đường Lò Văn Giá, Phường Tô Hiệu, Tỉnh Sơn La.</p>
-        <a href="https://maps.app.goo.gl/2YScy7jbLWwSCbEy9" 
-           style="display: inline-block;
-                  background: #eab676;
-                  color: #fff;
-                  padding: 6px 14px;
-                  border-radius: 25px;
-                  text-decoration: none;
-                  font-size: 13px;
-                  margin-top: 8px;
-                  transition: 0.3s;">
-           📍 Xem bản đồ
-        </a>
+          <h3 style="
+            text-align: center;
+            color: #d16d84;
+            font-weight: 600;
+            margin-bottom: 15px;
+          ">
+            💕 Tiệc tại nhà gái 💕
+          </h3>
+      
+          <p style="margin: 6px 0;"><strong>Thời gian:</strong> 11h00, ngày 07 tháng 11 năm 2025 (Thứ Sáu)</p>
+          <p style="margin: 6px 0;"><strong>Địa điểm:</strong> Nhà văn hóa Bản Hin Cáp, Xã Mường Và, Huyện Sốp Cộp, Tỉnh Sơn La.</p>
+          <a href="https://maps.app.goo.gl/SccXtCLE6sZNZ9y29" 
+             style="display: inline-block;
+                    background: #ff8fab;
+                    color: #fff;
+                    padding: 6px 14px;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-size: 13px;
+                    margin-top: 8px;
+                    transition: 0.3s;">
+             📍 Xem bản đồ
+          </a>
+        </div>
+      
+        <!-- Nhà trai -->
+        <div style="
+          flex: 1;
+          min-width: 300px;
+          background: linear-gradient(180deg, #fff7f3 0%, #fff 100%);
+          border: 1px solid #f8dccc;
+          border-radius: 20px;
+          padding: 20px;
+          box-shadow: 0 2px 6px rgba(255, 198, 150, 0.25);
+        ">
+          <h3 style="
+            text-align: center;
+            color: #d59c6a;
+            font-weight: 600;
+            margin-bottom: 15px;
+          ">
+            💍 Tiệc tại nhà trai 💍
+          </h3>
+      
+          <p style="margin: 6px 0;"><strong>Thời gian:</strong> 11h00, ngày 08 tháng 11 năm 2025 (Thứ Bảy)</p>
+          <p style="margin: 6px 0;"><strong>Địa điểm:</strong> Khách sạn Sen Vàng, Số 3 đường Lò Văn Giá, Phường Tô Hiệu, Tỉnh Sơn La.</p>
+          <a href="https://maps.app.goo.gl/2YScy7jbLWwSCbEy9" 
+             style="display: inline-block;
+                    background: #eab676;
+                    color: #fff;
+                    padding: 6px 14px;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-size: 13px;
+                    margin-top: 8px;
+                    transition: 0.3s;">
+             📍 Xem bản đồ
+          </a>
+        </div>
       </div>
-    </div>
-
-    <div class="message-form" style="background: linear-gradient(180deg, #fff9fa 0%, #fff 100%);
-      border: 1px solid #ffd6e3;
-      border-radius: 20px; margin-bottom: 40px;">
-      <h3>💌 Gửi lời chúc của bạn 💌</h3>
-      <form id="wishForm" style="margin-bottom: 20px;">
-        <input type="text" id="name" placeholder="Tên của bạn" required />
-        <textarea id="message" style="min-height: 96px;" placeholder="Lời chúc của bạn..." required></textarea>
-        <button type="submit">Gửi lời chúc</button>
-      </form>
-      <button id="viewWishesBtn" class="view-wishes-btn" style="display: none;">Xem lời chúc</button>
-    </div>
-
-   <div class="qr-section">
-      <h3>🎁 Mừng cưới trực tuyến 🎁</h3>
-      <p>Gửi lời chúc và mừng cưới đến cô dâu & chú rể <span style="color: red;">❤️</span></p>
-    
-      <button class="qr-button" onclick="toggleQR()">💌 Tặng quà</button>
-    
-      <div class="qr-images" id="qrContainer">
-          <div>
-              <p><strong>Cô dâu</strong></p>
-              <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/qrcode-codau.jpg" alt="QR Cô dâu" class="qr-image">
-          </div>
-          <div>
-              <p><strong>Chú rể</strong></p>
-              <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/qrcode-chure.jpg" alt="QR Chú rể" class="qr-image">
-          </div>
-          <p style="margin-top: 15px;"><span style="color: red;">❤️</span> Cảm ơn tình cảm của bạn <span style="color: red;">❤️</span></p>
+  
+      <div class="message-form" style="background: linear-gradient(180deg, #fff9fa 0%, #fff 100%);
+        border: 1px solid #ffd6e3;
+        border-radius: 20px; margin-bottom: 40px;">
+        <h3>💌 Gửi lời chúc của bạn 💌</h3>
+        <form id="wishForm" style="margin-bottom: 20px;">
+          <input type="text" id="name" placeholder="Tên của bạn" required />
+          <textarea id="message" style="min-height: 96px;" placeholder="Lời chúc của bạn..." required></textarea>
+          <button type="submit">Gửi lời chúc</button>
+        </form>
+        <button id="viewWishesBtn" class="view-wishes-btn" style="display: none;">Xem lời chúc</button>
       </div>
+  
+     <div class="qr-section">
+        <h3>🎁 Mừng cưới trực tuyến 🎁</h3>
+        <p>Gửi lời chúc và mừng cưới đến cô dâu & chú rể <span style="color: red;">❤️</span></p>
+      
+        <button class="qr-button" onclick="toggleQR()">💌 Tặng quà</button>
+      
+        <div class="qr-images" id="qrContainer">
+            <div>
+                <p><strong>Cô dâu</strong></p>
+                <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/qrcode-codau.jpg" alt="QR Cô dâu" class="qr-image">
+            </div>
+            <div>
+                <p><strong>Chú rể</strong></p>
+                <img src="https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/qrcode-chure.jpg" alt="QR Chú rể" class="qr-image">
+            </div>
+            <p style="margin-top: 15px;"><span style="color: red;">❤️</span> Cảm ơn tình cảm của bạn <span style="color: red;">❤️</span></p>
+        </div>
+      </div>
+      
+        <!-- ========== ALBUM ẢNH CƯỚI ========== -->
+      <section id="album">
+        <h3 style="color: #ff65a3;">📷 Ảnh cưới 📷</h3>
+        <div class="album-grid" id="albumGrid"></div>
+      </section>
+      
+      <footer>
+        <p style="margin-bottom: 80px;">Văn Việt <span style="color: red;">❤️</span> Thanh Quý - 2025</p>
+      </footer>
+      
     </div>
-    
-      <!-- ========== ALBUM ẢNH CƯỚI ========== -->
-    <section id="album">
-      <h3 style="color: #ff65a3;">📷 Ảnh cưới 📷</h3>
-      <div class="album-grid" id="albumGrid"></div>
-    </section>
-    
-    <footer>
-      <p style="margin-bottom: 80px;">Văn Việt <span style="color: red;">❤️</span> Thanh Quý - 2025</p>
-    </footer>
-    
   </div>
 
   <!-- === Firebase SDKs (non-module) === -->
