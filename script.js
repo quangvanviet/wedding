@@ -378,35 +378,110 @@ showSlides()
 
 // === ALBUM ẢNH CƯỚI ===
 const albumGrid = document.getElementById('albumGrid');
+const totalPhotos = 20; // số lượng ảnh
+const photoUrls = []; // lưu URL ảnh để dùng next/prev
 
-// Giả sử có 20 ảnh, đánh số từ 1.jpg -> 20.jpg
-const totalPhotos = 20; // bạn chỉ cần đổi con số này
 for (let i = 1; i <= totalPhotos; i++) {
+  const src = `https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/${i}.jpg`;
+  photoUrls.push(src);
+
   const img = document.createElement('img');
-  img.src = `https://cdn.jsdelivr.net/gh/quangvanviet/wedding/images/album/${i}.jpg`;
+  img.src = src;
   img.alt = `Ảnh cưới ${i}`;
-  img.addEventListener('click', () => openLightbox(img.src));
+  img.addEventListener('click', () => openLightbox(i - 1)); // truyền index
   albumGrid.appendChild(img);
 }
 
 // Tạo lightbox
 const lightbox = document.createElement('div');
 lightbox.id = 'lightbox';
+lightbox.style.display = 'none';
+lightbox.style.position = 'fixed';
+lightbox.style.top = 0;
+lightbox.style.left = 0;
+lightbox.style.width = '100%';
+lightbox.style.height = '100%';
+lightbox.style.background = 'rgba(0,0,0,0.8)';
+lightbox.style.justifyContent = 'center';
+lightbox.style.alignItems = 'center';
+lightbox.style.zIndex = 9999;
 document.body.appendChild(lightbox);
 
 const lightImg = document.createElement('img');
+lightImg.style.maxWidth = '90%';
+lightImg.style.maxHeight = '90%';
 lightbox.appendChild(lightImg);
+
+// Buttons next/prev
+const prevBtn = document.createElement('button');
+prevBtn.innerHTML = '◀';
+prevBtn.style.position = 'absolute';
+prevBtn.style.left = '20px';
+prevBtn.style.top = '50%';
+prevBtn.style.transform = 'translateY(-50%)';
+prevBtn.style.fontSize = '2rem';
+prevBtn.style.color = '#fff';
+prevBtn.style.background = 'transparent';
+prevBtn.style.border = 'none';
+prevBtn.style.cursor = 'pointer';
+lightbox.appendChild(prevBtn);
+
+const nextBtn = document.createElement('button');
+nextBtn.innerHTML = '▶';
+nextBtn.style.position = 'absolute';
+nextBtn.style.right = '20px';
+nextBtn.style.top = '50%';
+nextBtn.style.transform = 'translateY(-50%)';
+nextBtn.style.fontSize = '2rem';
+nextBtn.style.color = '#fff';
+nextBtn.style.background = 'transparent';
+nextBtn.style.border = 'none';
+nextBtn.style.cursor = 'pointer';
+lightbox.appendChild(nextBtn);
+
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  lightImg.src = photoUrls[currentIndex];
+  lightbox.style.display = 'flex';
+}
+
+// Next/Prev với loop
+function showNext() {
+  currentIndex = (currentIndex + 1) % totalPhotos; // loop về 0
+  lightImg.src = photoUrls[currentIndex];
+}
+
+function showPrev() {
+  currentIndex = (currentIndex - 1 + totalPhotos) % totalPhotos; // loop về cuối
+  lightImg.src = photoUrls[currentIndex];
+}
+
+// Event listeners
+nextBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // ngăn click tắt lightbox
+  showNext();
+});
+
+prevBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  showPrev();
+});
 
 lightbox.addEventListener('click', () => {
   lightbox.style.display = 'none';
 });
 
-function openLightbox(src) {
-  lightImg.src = src;
-  lightbox.style.display = 'flex';
-  lightbox.style.justifyContent = 'center';
-  lightbox.style.alignItems = 'center';
-}
+// Optional: keyboard support
+document.addEventListener('keydown', (e) => {
+  if (lightbox.style.display === 'flex') {
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+  }
+});
+
 
 const openBtn = document.getElementById("openCardBtn");
 const container = document.querySelector(".envelope-container");
