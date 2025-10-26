@@ -358,65 +358,60 @@ footer {
 /* Mở thiệp */
 .envelope-container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 0 auto;
   overflow: hidden;
-  background: #fbe9e7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
 }
 
-.left-door, .right-door {
+.left-door,
+.right-door {
   position: absolute;
   top: 0;
   width: 50%;
   height: 100%;
-  overflow: hidden;
-  transition: transform 1.5s ease-in-out;
-  z-index: 10;
-}
-
-.left-door img, .right-door img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  background: #f8c8d8;
+  transition: all 1s ease;
+  z-index: 2;
 }
 
 .left-door {
   left: 0;
-  transform-origin: left center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .right-door {
   right: 0;
-  transform-origin: right center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.open-btn {
+.card-content {
   position: absolute;
-  z-index: 20;
-  padding: 15px 30px;
-  background-color: #ff6fa1;
-  border: none;
-  border-radius: 30px;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 10px;
+  opacity: 0;
+  z-index: 1;
+  transition: opacity 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
 }
 
-.open-btn:hover {
-  transform: scale(1.05);
-}
-
+/* Khi mở phong bì */
 .envelope-open .left-door {
-  transform: rotateY(-100deg);
+  transform: translateX(-100%);
 }
 
 .envelope-open .right-door {
-  transform: rotateY(100deg);
+  transform: translateX(100%);
 }
 
 .envelope-open .card-content {
@@ -425,4 +420,25 @@ footer {
 
 .envelope-open .open-btn {
   display: none;
+}
+
+/* Nút mở */
+.open-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff8fab;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+  z-index: 3;
+}
+
+.open-btn:hover {
+  background: #ff6f91;
 }
