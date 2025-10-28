@@ -501,3 +501,69 @@ openBtn.addEventListener("click", () => {
   
 });
 
+//Duyet whis
+document.getElementById("approveWishesBtn").addEventListener("click", async () => {
+  const overlay = document.createElement("div");
+  overlay.className = "wishes-overlay";
+  overlay.innerHTML = `
+    <div class="wishes-popup admin-popup">
+      <h2>🛠️ Duyệt lời chúc 🛠️</h2>
+      <div id="adminWishesList" class="wishes-list">Đang tải...</div>
+      <button id="closeAdminWishesBtn" class="close-wishes-btn">Đóng</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  // Đóng popup
+  document.getElementById("closeAdminWishesBtn").onclick = () => overlay.remove();
+
+  // Tải danh sách lời chúc
+  const wishesRef = db.ref("wishes");
+  wishesRef.on("value", (snapshot) => {
+    const adminList = document.getElementById("adminWishesList");
+    adminList.innerHTML = "";
+    const data = snapshot.val();
+
+    if (!data) {
+      adminList.innerHTML = "<p>Chưa có lời chúc nào.</p>";
+      return;
+    }
+
+    const entries = Object.entries(data).reverse(); // Lấy cả key để update sau này
+
+    for (const [key, wish] of entries) {
+      const div = document.createElement("div");
+      div.className = "wish-item";
+      const date = new Date(wish.time).toLocaleString("vi-VN");
+
+      div.innerHTML = `
+        <p><strong>${wish.name}</strong> (${date})</p>
+        <p>${wish.message}</p>
+        <p>Trạng thái: 
+          <span class="${wish.active ? 'text-green' : 'text-red'}">
+            ${wish.active ? '✅ Hiển thị' : '🚫 Ẩn'}
+          </span>
+        </p>
+        <button class="toggle-btn" data-id="${key}">
+          ${wish.active ? 'Ẩn lời chúc' : 'Duyệt hiển thị'}
+        </button>
+      `;
+
+      adminList.appendChild(div);
+    }
+
+    // Gán sự kiện cho nút Duyệt/Ẩn
+    adminList.querySelectorAll(".toggle-btn").forEach((btn) => {
+      btn.onclick = async () => {
+        const id = btn.dataset.id;
+        const current = data[id].active;
+        await db.ref("wishes/" + id).update({
+          active: !current,
+        });
+        showPopup(current ? "Đã ẩn lời chúc" : "Đã duyệt hiển thị lời chúc 🎉");
+      };
+    });
+  });
+});
+
+
