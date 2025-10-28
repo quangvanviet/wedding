@@ -525,7 +525,7 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
   // Lắng nghe dữ liệu từ Firebase
   wishesRef.on("value", (snapshot) => {
     const adminList = document.getElementById("adminWishesList");
-    if (!adminList) return; // Nếu popup bị đóng thì thoát
+    if (!adminList) return;
 
     adminList.innerHTML = "";
     const data = snapshot.val();
@@ -541,6 +541,7 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
       const div = document.createElement("div");
       div.className = "wish-item";
       const date = new Date(wish.time).toLocaleString("vi-VN");
+
       div.innerHTML = `
         <p><strong>${wish.name}</strong> (${date})</p>
         <p>${wish.message}</p>
@@ -549,15 +550,17 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
             ${wish.active ? '✅ Hiển thị' : '🚫 Ẩn'}
           </span>
         </p>
-        <button class="toggle-btn ${wish.active ? 'btn-hide' : 'btn-show'}" data-id="${key}">
-          ${wish.active ? 'Ẩn lời chúc' : 'Duyệt hiển thị'}
-        </button>
-
+        <div class="admin-btns">
+          <button class="toggle-btn ${wish.active ? 'btn-hide' : 'btn-show'}" data-id="${key}">
+            ${wish.active ? 'Ẩn lời chúc' : 'Duyệt hiển thị'}
+          </button>
+          <button class="delete-btn" data-id="${key}">🗑️ Xóa</button>
+        </div>
       `;
       adminList.appendChild(div);
     }
 
-    // Nút duyệt/ẩn
+    // Nút ẩn/hiển thị
     adminList.querySelectorAll(".toggle-btn").forEach((btn) => {
       btn.onclick = async () => {
         const id = btn.dataset.id;
@@ -566,8 +569,20 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
         showPopup(current ? "Đã ẩn lời chúc" : "Đã duyệt hiển thị lời chúc 🎉");
       };
     });
+
+    // Nút xóa
+    adminList.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.onclick = async () => {
+        const id = btn.dataset.id;
+        if (confirm("Bạn có chắc muốn xóa lời chúc này không?")) {
+          await db.ref("wishes/" + id).remove();
+          showPopup("Đã xóa lời chúc 🗑️");
+        }
+      };
+    });
   });
 });
+
 
 
 
