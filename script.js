@@ -501,7 +501,7 @@ openBtn.addEventListener("click", () => {
   
 });
 
-//Duyet whis
+// Duyệt wishes
 document.getElementById("approveWishesBtn").addEventListener("click", async () => {
   const overlay = document.createElement("div");
   overlay.className = "wishes-overlay";
@@ -514,13 +514,19 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
   `;
   document.body.appendChild(overlay);
 
-  // Đóng popup
-  document.getElementById("closeAdminWishesBtn").onclick = () => overlay.remove();
-
-  // Tải danh sách lời chúc
   const wishesRef = db.ref("wishes");
+
+  // Đóng popup → tắt listener Firebase
+  document.getElementById("closeAdminWishesBtn").onclick = () => {
+    wishesRef.off();
+    overlay.remove();
+  };
+
+  // Lắng nghe dữ liệu từ Firebase
   wishesRef.on("value", (snapshot) => {
     const adminList = document.getElementById("adminWishesList");
+    if (!adminList) return; // Nếu popup bị đóng thì thoát
+
     adminList.innerHTML = "";
     const data = snapshot.val();
 
@@ -529,13 +535,12 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
       return;
     }
 
-    const entries = Object.entries(data).reverse(); // Lấy cả key để update sau này
+    const entries = Object.entries(data).reverse();
 
     for (const [key, wish] of entries) {
       const div = document.createElement("div");
       div.className = "wish-item";
       const date = new Date(wish.time).toLocaleString("vi-VN");
-
       div.innerHTML = `
         <p><strong>${wish.name}</strong> (${date})</p>
         <p>${wish.message}</p>
@@ -544,26 +549,26 @@ document.getElementById("approveWishesBtn").addEventListener("click", async () =
             ${wish.active ? '✅ Hiển thị' : '🚫 Ẩn'}
           </span>
         </p>
-        <button class="toggle-btn" data-id="${key}">
+        <button class="toggle-btn ${wish.active ? 'btn-hide' : 'btn-show'}" data-id="${key}">
           ${wish.active ? 'Ẩn lời chúc' : 'Duyệt hiển thị'}
         </button>
-      `;
 
+      `;
       adminList.appendChild(div);
     }
 
-    // Gán sự kiện cho nút Duyệt/Ẩn
+    // Nút duyệt/ẩn
     adminList.querySelectorAll(".toggle-btn").forEach((btn) => {
       btn.onclick = async () => {
         const id = btn.dataset.id;
         const current = data[id].active;
-        await db.ref("wishes/" + id).update({
-          active: !current,
-        });
+        await db.ref("wishes/" + id).update({ active: !current });
         showPopup(current ? "Đã ẩn lời chúc" : "Đã duyệt hiển thị lời chúc 🎉");
       };
     });
   });
 });
+
+
 
 
