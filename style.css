@@ -490,3 +490,31 @@ footer {
 .envelope-open .right-door {
   opacity: 0;
 }
+
+.admin-popup {
+  border: 2px solid #888;
+}
+
+.text-green {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.text-red {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.toggle-btn {
+  background: #ddd;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #bbb;
+}
+
