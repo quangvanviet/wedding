@@ -99,7 +99,8 @@ function toggleQR() {
     await db.ref("wishes").push({
       name,
       message,
-      time: new Date().toISOString()
+      time: new Date().toISOString(),
+      active: false,
     });
     showPopup("Cảm ơn bạn đã gửi lời chúc!");
     e.target.reset();
@@ -193,7 +194,8 @@ function createFlyingHeart() {
         return;
       }
     
-      const entries = Object.values(data).reverse();
+      const entries = Object.values(data).filter((wish) => wish.active).reverse()
+      
       for (const wish of entries) {
         const p = document.createElement("div");
         const date = new Date(wish.time).toLocaleString("vi-VN");
