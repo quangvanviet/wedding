@@ -233,7 +233,7 @@ function createFlyingHeart() {
       text-align: center;
       position: relative;
       max-height: 80vh;
-      overflow-y: auto;
+      overflow: hidden;
     }
     .wishes-list {
       text-align: left;
